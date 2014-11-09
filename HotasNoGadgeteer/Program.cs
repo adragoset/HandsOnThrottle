@@ -116,13 +116,13 @@ namespace HotasNoGadgeteer
         private void InitializeTrackBall()
         {
 
-            var pin_Up = new InterruptPort(G120II.TBSocket2[0], false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeBoth);
+            var pin_Up = new InterruptPort(G120II.TBSocket1[2], false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeBoth);
 
-            var pin_Down = new InterruptPort(G120II.TBSocket1[2], false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeBoth);
+            var pin_Down = new InterruptPort(G120II.TBSocket1[1], false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeBoth);
 
             var pin_Left = new InterruptPort(G120II.TBSocket1[0], false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeBoth);
 
-            var pin_Right = new InterruptPort(G120II.TBSocket1[1], false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeBoth);
+            var pin_Right = new InterruptPort(G120II.TBSocket2[0], false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeBoth); 
 
             var trackBallInputs = new InterruptPort[] { pin_Up, pin_Down, pin_Left, pin_Right };
 
