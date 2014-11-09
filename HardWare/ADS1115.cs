@@ -58,11 +58,11 @@ namespace HardWare
         public Mode PollingMode { get; set; }
 
         public ADS1115()
+            : this(I2C_ADDRESS)
         {
         }
 
         public ADS1115(ushort address)
-            : base()
         {
 
             if (address == 0x4A || address == 0x49 || address == 0x48 || address == 0x96)
@@ -105,43 +105,47 @@ namespace HardWare
         /// <returns></returns>
         public Int16 ReadADC(Resolution resolution, Input input)
         {
+
+            this.CurrentInput = input;
+
+            this.PollingResolution = resolution;
+
+            byte[] config = BuildConfiguration();
+
+            // create write buffer (we need three bytes)
+            byte[] registerADS1115 = new byte[3] { 1, config[0], config[1] };
+            // Create write transaction
+
+            // excecute ADS1115 setup
             lock (Bus)
             {
-                this.CurrentInput = input;
-
-                this.PollingResolution = resolution;
-
-                byte[] config = BuildConfiguration();
-
-                // create write buffer (we need three bytes)
-                byte[] registerADS1115 = new byte[3] { 1, config[0], config[1] };
-                // Create write transaction
-
-                // excecute ADS1115 setup
-
                 Bus.Write(registerADS1115);
-
-                // Wait for conversion
-                Thread.Sleep(1);
-
-                // Set to conversion register
-                registerADS1115 = new byte[1] { 0 };
-
-                // Execute set to conversion
-
-                Bus.Write(registerADS1115);
-
-
-                // create read buffer
-                byte[] readADS1115 = new byte[2];
-                // Read ADC values
-
-                Bus.Read(registerADS1115);
-
-
-                // return values
-                return (Int16)(readADS1115[0] * 256 + readADS1115[1]);
             }
+            // Wait for conversion
+            Thread.Sleep(1);
+
+            // Set to conversion register
+            registerADS1115 = new byte[1] { 0 };
+
+            // Execute set to conversion
+            lock (Bus)
+            {
+                Bus.Write(registerADS1115);
+            }
+
+
+            // create read buffer
+            byte[] readADS1115 = new byte[2];
+            // Read ADC values
+            lock (Bus)
+            {
+                Bus.Read(registerADS1115);
+            }
+
+
+            // return values
+            return (Int16)(readADS1115[0] * 256 + readADS1115[1]);
+
         }
     }
 }

@@ -7,7 +7,6 @@ namespace Core
 {
     public class RGBLedOutput
     {
-        private static uint Period = 100;
 
         private static object Lock = new object();
 

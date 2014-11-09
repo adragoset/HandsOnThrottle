@@ -32,6 +32,19 @@
   <ItemGroup>
     <Compile Include="ByteHelper.cs" />
     <Compile Include="Color.cs" />
+    <Compile Include="InputArray.cs" />
+    <Compile Include="KeyPadElements\RGBKeyPad.cs" />
+    <Compile Include="KeyPadElements\RGBPage.cs" />
+    <Compile Include="KeyPadElements\StatefulButton.cs" />
+    <Compile Include="KeyPadElements\StatefulRGBKeypad.cs" />
+    <Compile Include="KeyPadElements\StatefulRGBPage.cs" />
+    <Compile Include="KeyPadState\ButtonState.cs" />
+    <Compile Include="KeyPadState\KeyPadConfigurationParser.cs" />
+    <Compile Include="KeyPadState\KeyPadState.cs" />
+    <Compile Include="KeyPadState\PageState.cs" />
+    <Compile Include="LedController\LedSwitcherController.cs" />
+    <Compile Include="LedController\RgbLedColorController.cs" />
+    <Compile Include="LedController\RgbLedSeriesController.cs" />
     <Compile Include="MomentaryButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Button.cs" />
