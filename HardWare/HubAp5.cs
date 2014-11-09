@@ -17,7 +17,6 @@ namespace HardWare
         private ADS7830 ads;
         private Hashtable socketMap;
         private byte[] pinMap;
-        private string[] typeMap;
 
         /// <summary>
         /// Returns the socket number for socket 1 on the hub.

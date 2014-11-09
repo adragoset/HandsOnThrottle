@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 
 
-namespace Devices
+namespace Core
 {
     public class RGBLedOutput
     {

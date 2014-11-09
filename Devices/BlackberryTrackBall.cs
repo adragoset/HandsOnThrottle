@@ -1,7 +1,6 @@
 ﻿using System;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
-using Devices;
 using FrameWork;
 using Core;
 
@@ -64,7 +63,7 @@ namespace Devices
 
             Led = new RGBLedOutput(ledOutput[0], ledOutput[1], ledOutput[2], false);
 
-            Led.SetColor(Devices.Color.Orange);
+            Led.SetColor(Core.Color.Orange);
             TrackState = new TrackBallState();
 
             BindEventHandlers();

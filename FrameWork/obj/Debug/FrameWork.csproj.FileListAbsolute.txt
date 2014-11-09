@@ -14,3 +14,19 @@ C:\Users\Alex\Documents\GitHub\HOTAS Throttle Expansion\HotasNoGadgeteer\FrameWo
 C:\Users\Alex\Documents\GitHub\HOTAS Throttle Expansion\HotasNoGadgeteer\FrameWork\obj\Debug\le\FrameWork.pdbx
 C:\Users\Alex\Documents\GitHub\HOTAS Throttle Expansion\HotasNoGadgeteer\FrameWork\obj\Debug\FrameWork.dll
 C:\Users\Alex\Documents\GitHub\HOTAS Throttle Expansion\HotasNoGadgeteer\FrameWork\obj\Debug\FrameWork.pdb
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\le\FrameWork.dll
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\be\FrameWork.dll
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\le\FrameWork.pdb
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\be\FrameWork.pdb
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\FrameWork.dll
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\FrameWork.pdb
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\le\FrameWork.pe
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\le\FrameWork.pdbx
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\be\FrameWork.pe
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\bin\Debug\be\FrameWork.pdbx
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\obj\Debug\FrameWork.dll
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\obj\Debug\FrameWork.pdb
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\obj\Debug\be\FrameWork.pe
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\obj\Debug\be\FrameWork.pdbx
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\obj\Debug\le\FrameWork.pe
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\FrameWork\obj\Debug\le\FrameWork.pdbx
