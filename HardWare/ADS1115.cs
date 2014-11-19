@@ -139,7 +139,7 @@ namespace HardWare
             // Read ADC values
             lock (Bus)
             {
-                Bus.Read(registerADS1115);
+                Bus.Read(readADS1115);
             }
 
 

@@ -63,14 +63,15 @@ namespace Devices
             result[3] = buttonReport[3];
             result[4] = hatReport[0];
             result[5] = hatReport[1];
-            result[6] = leftThrottleReport[0];
-            result[7] = leftThrottleReport[1];
-            result[8] = rightThrottleReport[0];
-            result[9] = rightThrottleReport[1];
-            result[10] = xReport[0];
-            result[11] = xReport[1];
-            result[12] = yReport[0];
-            result[13] = yReport[1];
+            result[6] = xReport[0];
+            result[7] = xReport[1];
+            result[8] = yReport[0];
+            result[9] = yReport[1];
+            result[10] = leftThrottleReport[0];
+            result[11] = leftThrottleReport[1];
+            result[12] = rightThrottleReport[0];
+            result[13] = rightThrottleReport[1];
+            
 
             return result;
         }
@@ -144,7 +145,7 @@ namespace Devices
 
             lock (adc)
             {
-                reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_1);
+                reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_3);
             }
 
             return ByteHelper.FromShort(reading);
@@ -168,7 +169,7 @@ namespace Devices
 
             lock (adc)
             {
-                reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_3);
+                reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_1);
             }
 
             return ByteHelper.FromShort(reading);
