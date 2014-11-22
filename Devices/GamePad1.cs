@@ -71,7 +71,7 @@ namespace Devices
             result[11] = leftThrottleReport[1];
             result[12] = rightThrottleReport[0];
             result[13] = rightThrottleReport[1];
-            
+
 
             return result;
         }
@@ -145,6 +145,16 @@ namespace Devices
 
             lock (adc)
             {
+                adc.Configure(
+              ADS1115.OperationalStatus.SingleConversion,
+              ADS1115.Mode.ContinuousConversion,
+              ADS1115.Input.Input_1, ADS1115.Gain.v1,
+              ADS1115.Resolution.SPS860,
+              ADS1115.ComparatorMode.Traditional,
+              ADS1115.ComparatorPolarity.ActiveHigh,
+              ADS1115.ComparatorLatch.None,
+              ADS1115.ComparatorQueue.Disable
+              );
                 reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_3);
             }
 
@@ -157,6 +167,16 @@ namespace Devices
 
             lock (adc)
             {
+                adc.Configure(
+              ADS1115.OperationalStatus.SingleConversion,
+              ADS1115.Mode.ContinuousConversion,
+              ADS1115.Input.Input_1, ADS1115.Gain.v1,
+              ADS1115.Resolution.SPS860,
+              ADS1115.ComparatorMode.Traditional,
+              ADS1115.ComparatorPolarity.ActiveHigh,
+              ADS1115.ComparatorLatch.None,
+              ADS1115.ComparatorQueue.Disable
+              );
                 reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_2);
             }
 
@@ -169,6 +189,16 @@ namespace Devices
 
             lock (adc)
             {
+                adc.Configure(
+                ADS1115.OperationalStatus.SingleConversion,
+                ADS1115.Mode.ContinuousConversion,
+                ADS1115.Input.Input_1, ADS1115.Gain.v4,
+                ADS1115.Resolution.SPS860,
+                ADS1115.ComparatorMode.Traditional,
+                ADS1115.ComparatorPolarity.ActiveHigh,
+                ADS1115.ComparatorLatch.None,
+                ADS1115.ComparatorQueue.Disable
+                );
                 reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_1);
             }
 
@@ -181,6 +211,16 @@ namespace Devices
 
             lock (adc)
             {
+                adc.Configure(
+                ADS1115.OperationalStatus.SingleConversion,
+                ADS1115.Mode.ContinuousConversion,
+                ADS1115.Input.Input_1, ADS1115.Gain.v3,
+                ADS1115.Resolution.SPS860,
+                ADS1115.ComparatorMode.Traditional,
+                ADS1115.ComparatorPolarity.ActiveHigh,
+                ADS1115.ComparatorLatch.None,
+                ADS1115.ComparatorQueue.Disable
+                );
                 reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_4);
             }
 

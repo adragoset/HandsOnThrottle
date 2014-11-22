@@ -121,7 +121,7 @@ namespace HotasNoGadgeteer
 
             Configuration.GenericDescriptor genericGamePad2Descriptor = new Configuration.GenericDescriptor((byte)129, (ushort)8704, GamePad2.GetHidReportDescriptorPayload());
             //Add Members
-            byte Jnum = this.AddInterface(gamePad2Interface, "ThrottleKeyPad");
+            byte Jnum = this.AddInterface(gamePad2Interface, "KeyPad");
             this.AddDescriptor((Configuration.Descriptor)genericGamePad2Descriptor);
             genericGamePad2Descriptor.wIndex = (ushort)Jnum;
 
