@@ -78,7 +78,10 @@ namespace Devices
 
         private byte[] GetBytesFromButtons()
         {
-            var result = new byte[] { 0, 0, 0, 0 };
+            byte byte1 = 0;
+            byte byte2 = 0;
+            byte byte3 = 0;
+            byte byte4 = 0;
 
             foreach (var button in buttonInputs)
             {
@@ -88,19 +91,19 @@ namespace Devices
 
                     if (key <= 8)
                     {
-                        ByteHelper.FlipBitInByte(result[0], key);
+                        byte1 = ByteHelper.FlipBitInByte(byte1, key);
                     }
                     else if (key <= 16)
                     {
-                        ByteHelper.FlipBitInByte(result[1], key);
+                        byte2 = ByteHelper.FlipBitInByte(byte2, key);
                     }
                     else if (key <= 24)
                     {
-                        ByteHelper.FlipBitInByte(result[2], key);
+                        byte3 = ByteHelper.FlipBitInByte(byte3, key);
                     }
                     else if (key <= 32)
                     {
-                        ByteHelper.FlipBitInByte(result[3], key);
+                        byte4 = ByteHelper.FlipBitInByte(byte4, key);
                     }
                     else
                     {
@@ -109,7 +112,7 @@ namespace Devices
                 }
             }
 
-            return result;
+            return new byte[] { byte1, byte2, byte3, byte4 };
         }
 
         private byte[] GetBytesFromHat()
