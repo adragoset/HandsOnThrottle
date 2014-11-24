@@ -117,26 +117,27 @@ namespace Devices
 
         private byte[] GetBytesFromHat()
         {
-            var result = new byte[] { 0, 0 };
+            var result = new byte[] { 4, 0 };
+
 
             if (hat_up.WasPressed())
             {
-                result[0] = ByteHelper.FlipBitInByte(result[0], hat_up.ButtonId);
+                result[0] = 0;
             }
 
             if (hat_down.WasPressed())
             {
-                result[0] = ByteHelper.FlipBitInByte(result[0], hat_down.ButtonId);
+                result[0] = 1;
             }
 
             if (hat_left.WasPressed())
             {
-                result[0] = ByteHelper.FlipBitInByte(result[0], hat_left.ButtonId);
+                result[0] = 2;
             }
 
             if (hat_right.WasPressed())
             {
-                result[0] = ByteHelper.FlipBitInByte(result[0], hat_right.ButtonId);
+                result[0] = 3;
             }
 
             return result;
@@ -259,8 +260,8 @@ namespace Devices
 
                  0x05, 0x01,                    //   USAGE_PAGE (Generic Desktop)
                  0x09, 0x39,                    //   USAGE (Hat switch)
-                 0x15, 0x01,                    //   LOGICAL_MINIMUM (1)
-                 0x25, 0x08,                    //   LOGICAL_MAXIMUM (8)
+                 0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+                 0x25, 0x03,                    //   LOGICAL_MAXIMUM (3)
                  0x35, 0x00,                    //   PHYSICAL_MINIMUM (0)
                  0x46, 0x0e, 0x01,              //   PHYSICAL_MAXIMUM (270)
                  0x65, 0x14,                    //   UNIT (Eng Rot:Angular Pos)
