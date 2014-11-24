@@ -29,19 +29,19 @@ namespace Devices
 
             this.adc = adc;
 
-            hat_up = new MomentaryButton(1, buttonInputs[0]);
+            hat_up = new MomentaryButton(1, buttonInputs[0], "Right_Throttle_C_Hat_Up");
 
-            hat_down = new MomentaryButton(2, buttonInputs[1]);
+            hat_down = new MomentaryButton(2, buttonInputs[1], "Right_Throttle_C_Hat_Down");
 
-            hat_left = new MomentaryButton(3, buttonInputs[2]);
+            hat_left = new MomentaryButton(3, buttonInputs[2], "Right_Throttle_C_Hat_Left");
 
-            hat_right = new MomentaryButton(4, buttonInputs[3]);
+            hat_right = new MomentaryButton(4, buttonInputs[3], "Right_Throttle_C_Hat_Right");
 
             this.buttonInputs = new MomentaryButton[32];
 
             for (int index = 4; index < buttonInputs.Length; index++)
             {
-                this.buttonInputs[index - 4] = new MomentaryButton(index - 3, buttonInputs[index]);
+                this.buttonInputs[index - 4] = new MomentaryButton(index - 3, buttonInputs[index], "Right_Throttle_B_" + (index - 3));
             }
 
         }
@@ -82,7 +82,7 @@ namespace Devices
 
             foreach (var button in buttonInputs)
             {
-                if (button.WasPressed)
+                if (button.WasPressed())
                 {
                     var key = button.ButtonId;
 
@@ -116,24 +116,24 @@ namespace Devices
         {
             var result = new byte[] { 0, 0 };
 
-            if (hat_up.WasPressed)
+            if (hat_up.WasPressed())
             {
                 result[0] = ByteHelper.FlipBitInByte(result[0], hat_up.ButtonId);
             }
 
-            if (hat_down.WasPressed)
+            if (hat_down.WasPressed())
             {
-                result[0] = ByteHelper.FlipBitInByte(result[5], hat_down.ButtonId);
+                result[0] = ByteHelper.FlipBitInByte(result[0], hat_down.ButtonId);
             }
 
-            if (hat_left.WasPressed)
+            if (hat_left.WasPressed())
             {
-                result[0] = ByteHelper.FlipBitInByte(result[5], hat_left.ButtonId);
+                result[0] = ByteHelper.FlipBitInByte(result[0], hat_left.ButtonId);
             }
 
-            if (hat_right.WasPressed)
+            if (hat_right.WasPressed())
             {
-                result[0] = ByteHelper.FlipBitInByte(result[5], hat_right.ButtonId);
+                result[0] = ByteHelper.FlipBitInByte(result[0], hat_right.ButtonId);
             }
 
             return result;
@@ -257,7 +257,7 @@ namespace Devices
                  0x05, 0x01,                    //   USAGE_PAGE (Generic Desktop)
                  0x09, 0x39,                    //   USAGE (Hat switch)
                  0x15, 0x01,                    //   LOGICAL_MINIMUM (1)
-                 0x25, 0x04,                    //   LOGICAL_MAXIMUM (4)
+                 0x25, 0x08,                    //   LOGICAL_MAXIMUM (8)
                  0x35, 0x00,                    //   PHYSICAL_MINIMUM (0)
                  0x46, 0x0e, 0x01,              //   PHYSICAL_MAXIMUM (270)
                  0x65, 0x14,                    //   UNIT (Eng Rot:Angular Pos)

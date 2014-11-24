@@ -1,71 +1,64 @@
 using System;
 using Microsoft.SPOT;
+using System.Collections;
 
 namespace Core.KeyPadElements
 {
     public class StatefulRGBKeypad : RGBKeypad
     {
-        public StatefulRGBPage StatefulRGBCurrentPage
-        {
-            get
-            {
-                return (StatefulRGBPage)base.CurrentPage;
-            }
-        }
+      
 
-        public StatefulRGBKeypad(StatefulRGBPage[] pages, StatefulButton commandButton)
-            : base(pages, commandButton)
+        public StatefulRGBKeypad(StatefulButton[] buttons, StatefulButton commandButton)
+            : base(buttons, commandButton)
         {
 
         }
 
         public void IncrementPage()
         {
-            if (StatefulRGBCurrentPage.PageNumber == Pages)
-            {
-                HomePage();
-            }
-            else
-            {
-                SetPage(StatefulRGBCurrentPage.PageNumber + 1);
-            }
+            
         }
 
         public void HomePage()
         {
-            SetPage(1);
+            
         }
 
         public override void SetPage(int pageNumber)
         {
-            ((StatefulRGBPage)StatefulRGBCurrentPage).DeActivate();
+           
             base.SetPage(pageNumber);
-            ((StatefulRGBPage)StatefulRGBCurrentPage).Activate();
-        }
-
-        public bool CommandButtonWasPressed()
-        {
-            return CommandButton.WasPressed;
+           
         }
 
         public StatefulButton[] PressedButtons()
         {
-            var buttons = ((StatefulRGBPage)StatefulRGBCurrentPage).PressedButtons;
-            var allButtons = new StatefulButton[buttons.Length];
 
-            if (CommandButton.WasPressed)
+            StatefulButton[] allButtons = null;
+
+            if (CommandButton.WasPressed())
             {
                 allButtons = new StatefulButton[1];
-                allButtons[buttons.Length] = CommandButton;
+                allButtons[0] = CommandButton;
             }
             else
             {
-                for (int i = 0; i < buttons.Length; i++)
+                ArrayList buttons = new ArrayList();
+
+                for (int i = 0; i < Buttons.Length; i++)
                 {
-                    if (buttons[i].WasPressed)
+                    if (Buttons[i].WasPressed())
                     {
-                        allButtons[i] = buttons[i];
+                        buttons.Add(Buttons[i]);
                     }
+                }
+
+                allButtons = new StatefulButton[buttons.Count];
+
+                int index = 0;
+                foreach (var button in buttons) {
+                    allButtons[index] = (StatefulButton)button;
+                    index++;
                 }
             }
 

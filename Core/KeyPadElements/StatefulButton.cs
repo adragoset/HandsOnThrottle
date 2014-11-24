@@ -14,8 +14,8 @@ namespace Core.KeyPadElements
 
         public int LEDIndex { get; private set; }
 
-        public StatefulButton(int id, InterruptInput ioPin, int ledIndex, Color[] stateList, Color initialColor, Color currentColor)
-            : base(id, ioPin, false)
+        public StatefulButton(int id, InterruptInput ioPin, int ledIndex, Color[] stateList, Color initialColor, Color currentColor, string name)
+            : base(id, ioPin, name)
         {
             LEDIndex = ledIndex;
             this.StateList = stateList;
@@ -41,20 +41,10 @@ namespace Core.KeyPadElements
 
         protected override void Button_Pressed(InterruptInput sender, bool value)
         {
+            base.Button_Pressed(sender, value);
             lock (button_lock)
             {
-                if (active)
-                {
-                    if (wasPressed)
-                    {
-                        wasPressed = false;
-                    }
-                    else
-                    {
-                        wasPressed = true;
-                        TransitionState();
-                    }
-                }
+                TransitionState();
             }
         }
 

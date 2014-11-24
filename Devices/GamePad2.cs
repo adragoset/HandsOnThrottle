@@ -27,35 +27,35 @@ namespace Devices
                 throw new ArgumentException("You must provide 4 inputs for this device");
             }
 
-            hat_up = new MomentaryButton(1, hatSwitchInputs[0]);
+            hat_up = new MomentaryButton(1, hatSwitchInputs[0], "left_throttle_hat_up");
 
-            hat_down = new MomentaryButton(2, hatSwitchInputs[1]);
+            hat_down = new MomentaryButton(2, hatSwitchInputs[1], "left_throttle_hat_down");
 
-            hat_left = new MomentaryButton(3, hatSwitchInputs[2]);
+            hat_left = new MomentaryButton(3, hatSwitchInputs[2], "left_throttle_hat_left");
 
-            hat_right = new MomentaryButton(4, hatSwitchInputs[3]);
+            hat_right = new MomentaryButton(4, hatSwitchInputs[3], "left_throttle_hat_right");
         }
 
         public byte[] GetDeviceState()
         {
             byte[] result = GetBytesForKeyPad(keyPad.ReadButtonPresses());
 
-            if (hat_up.WasPressed)
+            if (hat_up.WasPressed())
             {
                 result[5] = ByteHelper.FlipBitInByte(result[5], hat_up.ButtonId + 3);
             }
 
-            if (hat_down.WasPressed)
+            if (hat_down.WasPressed())
             {
                 result[5] = ByteHelper.FlipBitInByte(result[5], hat_down.ButtonId + 3);
             }
 
-            if (hat_left.WasPressed)
+            if (hat_left.WasPressed())
             {
                 result[5] = ByteHelper.FlipBitInByte(result[5], hat_left.ButtonId + 3);
             }
 
-            if (hat_right.WasPressed)
+            if (hat_right.WasPressed())
             {
                 result[5] = ByteHelper.FlipBitInByte(result[5], hat_right.ButtonId + 3);
             }

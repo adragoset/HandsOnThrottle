@@ -34,10 +34,8 @@
     <Compile Include="Color.cs" />
     <Compile Include="InputArray.cs" />
     <Compile Include="KeyPadElements\RGBKeyPad.cs" />
-    <Compile Include="KeyPadElements\RGBPage.cs" />
     <Compile Include="KeyPadElements\StatefulButton.cs" />
     <Compile Include="KeyPadElements\StatefulRGBKeypad.cs" />
-    <Compile Include="KeyPadElements\StatefulRGBPage.cs" />
     <Compile Include="KeyPadState\ButtonState.cs" />
     <Compile Include="KeyPadState\KeyPadConfigurationParser.cs" />
     <Compile Include="KeyPadState\KeyPadState.cs" />

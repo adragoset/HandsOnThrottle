@@ -191,7 +191,11 @@ namespace HotasNoGadgeteer
 
         private void InitializeGamePads()
         {
-            InterruptInput[] GamePad1Inputs = new InterruptInput[] { 
+            InterruptInput[] GamePad1Inputs = new InterruptInput[] {
+                Interrupts[11].GetInput(), 
+                Interrupts[12].GetInput(), 
+                Interrupts[13].GetInput(), 
+                Interrupts[14].GetInput(),
                 Interrupts[15].GetInput(), 
                 Interrupts[16].GetInput(), 
                 Interrupts[17].GetInput(), 
@@ -224,19 +228,16 @@ namespace HotasNoGadgeteer
                 Interrupts[44].GetInput(), 
                 Interrupts[45].GetInput(), 
                 Interrupts[46].GetInput(), 
-                Interrupts[47].GetInput(),
-                Interrupts[48].GetInput(), 
-                Interrupts[49].GetInput(), 
-                Interrupts[50].GetInput()
             };
 
             GamePad1 = new GamePad1(ADC, GamePad1Inputs);
 
             InterruptInput[] GamePad2Inputs = new InterruptInput[] { 
-                Interrupts[11].GetInput(), 
-                Interrupts[12].GetInput(), 
-                Interrupts[13].GetInput(), 
-                Interrupts[14].GetInput()
+
+                Interrupts[47].GetInput(),
+                Interrupts[48].GetInput(), 
+                Interrupts[49].GetInput(), 
+                Interrupts[50].GetInput()
             };
 
             GamePad2 = new GamePad2(KeyPad, GamePad2Inputs);

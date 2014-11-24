@@ -51,9 +51,9 @@ namespace Devices
                 throw new ArgumentException("4 interrupts for buttons are required.");
             }
 
-            Btn_Push = new MomentaryButton(1, buttonInputs[0]);
-            Center_Push = new MomentaryButton(2, buttonInputs[1]);
-            Up_Push = new MomentaryButton(3, buttonInputs[2]);
+            Btn_Push = new MomentaryButton(1, buttonInputs[0], "Mouse_Center_Push");
+            Center_Push = new MomentaryButton(2, buttonInputs[1], "Mouse_Fwd_Push");
+            Up_Push = new MomentaryButton(3, buttonInputs[2], "Mouse_Bck_Push");
            
 
             if (ledOutput.Length != 3)
@@ -76,18 +76,18 @@ namespace Devices
 
             byte buttonData = 0;
 
-            if (Btn_Push.WasPressed)
+            if (Btn_Push.WasPressed())
             {
                 buttonData = ByteHelper.FlipBitInByte(buttonData, 1);
             }
 
-            if (Center_Push.WasPressed)
+            if (Center_Push.WasPressed())
             {
 
                 buttonData = ByteHelper.FlipBitInByte(buttonData, 2);
             }
 
-            if (Up_Push.WasPressed)
+            if (Up_Push.WasPressed())
             {
                 buttonData = ByteHelper.FlipBitInByte(buttonData, 3);
             }

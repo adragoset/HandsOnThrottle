@@ -21,8 +21,6 @@ namespace Devices
 
         private StatefulRGBKeypad KeyPadState;
 
-        private bool CommandButtonPressed;
-
         public KeyPad(InterruptInput[] KeyPadIoInputs, OutputPort[] ledSwitchOutputs, PWM[] pwmOutputs, string config)
             : base(KeyPadIoInputs)
         {
@@ -34,46 +32,31 @@ namespace Devices
 
             LedController = new RgbLedSeriesController(ledSwitchOutputs, pwmOutputs);
 
-            CommandButtonPressed = false;
+           
         }
 
         private StatefulRGBKeypad BuildKeyPad(string config)
         {
             KeyPadStateData data = getData(config);
-            StatefulRGBPage[] pages = getPages(data.PageStates);
-            StatefulButton commandButton = new StatefulButton(1, Inputs[0], 1, data.CommandButton.StateList, data.CommandButton.InitialColor, data.CommandButton.CurrentColor);
-            return new StatefulRGBKeypad(pages, commandButton);
+            StatefulButton[] buttons = getButtons(data.PageStates);
+            StatefulButton commandButton = new StatefulButton(1, Inputs[0], 1, data.CommandButton.StateList, data.CommandButton.InitialColor, data.CommandButton.CurrentColor, "Command_B");
+            return new StatefulRGBKeypad(buttons, commandButton);
         }
 
-        private StatefulRGBPage[] getPages(PageState[] pageState)
+        private StatefulButton[] getButtons(PageState[] pageState)
         {
-            var pages = new StatefulRGBPage[pageState.Length];
-            var currentPin = 2;
-            for (int i = 0; i < pageState.Length; i++)
-            {
-                StatefulButton[] Buttons = new StatefulButton[PhysicalButtonCount - 1];
-                for (var b = 0; b < PhysicalButtonCount - 1; b++)
-                {
-                    if (currentPin <= Inputs.Length)
-                    {
-                        var page = pageState[i];
-                        var buttonstate = page.ButtonStates[b];
-                        Buttons[b] = new StatefulButton(buttonstate.Id, Inputs[currentPin - 1], currentPin, buttonstate.StateList, buttonstate.InitialColor, buttonstate.CurrentColor);
-                        if (currentPin <= PhysicalButtonCount - 1)
-                        {
-                            currentPin++;
-                        }
-                        else
-                        {
-                            currentPin = 2;
-                        }
-                    }
-                }
+            var buttons = new StatefulButton[7];
 
-                pages[i] = new StatefulRGBPage(i + 1, Buttons);
-            }
+            buttons[0] = new StatefulButton(1, Inputs[1], 2, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_2");
+            buttons[1] = new StatefulButton(1, Inputs[2], 3, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_3");
+            buttons[2] = new StatefulButton(1, Inputs[3], 4, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_4");
+            buttons[3] = new StatefulButton(1, Inputs[4], 5, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_5");
+            buttons[4] = new StatefulButton(1, Inputs[5], 6, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_6");
+            buttons[5] = new StatefulButton(1, Inputs[6], 7, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_7");
+            buttons[6] = new StatefulButton(1, Inputs[7], 8, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_8");
+              
 
-            return pages;
+            return buttons;
         }
 
         private KeyPadStateData getData(string config)
@@ -85,21 +68,12 @@ namespace Devices
         {
             int[] buttonIds;
 
-            if (KeyPadState.CommandButtonWasPressed())
+            if (KeyPadState.CommandButton.WasPressed())
             {
                 buttonIds = new int[] { KeyPadState.CommandButton.ButtonId };
-                if (!CommandButtonPressed)
-                {
-                    lock (KeyPadState)
-                    {
-                        KeyPadState.IncrementPage();
-                    }
-                    CommandButtonPressed = true;
-                }
             }
             else
             {
-                CommandButtonPressed = false;
                 StatefulButton[] pressedButtons;
 
                 lock (KeyPadState)
@@ -127,7 +101,7 @@ namespace Devices
 
             lock (KeyPadState)
             {
-                buttons = KeyPadState.StatefulRGBCurrentPage.Buttons;
+                buttons = KeyPadState.Buttons;
             }
 
             foreach (var button in buttons)

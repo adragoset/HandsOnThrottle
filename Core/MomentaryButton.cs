@@ -7,8 +7,8 @@ namespace Core
 {
     public class MomentaryButton : Button
     {
-        public MomentaryButton(int id, InterruptInput ioPin)
-            : base(id, ioPin, true)
+        public MomentaryButton(int id, InterruptInput ioPin, string name)
+            : base(id, ioPin, name)
         {
         }
 
