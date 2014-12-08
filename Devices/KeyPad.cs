@@ -47,13 +47,13 @@ namespace Devices
         {
             var buttons = new StatefulButton[7];
 
-            buttons[0] = new StatefulButton(1, Inputs[1], 2, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_2");
-            buttons[1] = new StatefulButton(1, Inputs[2], 3, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_3");
-            buttons[2] = new StatefulButton(1, Inputs[3], 4, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_4");
-            buttons[3] = new StatefulButton(1, Inputs[4], 5, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_5");
-            buttons[4] = new StatefulButton(1, Inputs[5], 6, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_6");
-            buttons[5] = new StatefulButton(1, Inputs[6], 7, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_7");
-            buttons[6] = new StatefulButton(1, Inputs[7], 8, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_8");
+            buttons[0] = new StatefulButton(2, Inputs[1], 2, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_2");
+            buttons[1] = new StatefulButton(3, Inputs[2], 3, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_3");
+            buttons[2] = new StatefulButton(4, Inputs[3], 4, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_4");
+            buttons[3] = new StatefulButton(5, Inputs[4], 5, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_5");
+            buttons[4] = new StatefulButton(6, Inputs[5], 6, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_6");
+            buttons[5] = new StatefulButton(7, Inputs[6], 7, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_7");
+            buttons[6] = new StatefulButton(8, Inputs[7], 8, new Color[] { Color.Blue, Color.Green }, Color.Blue, Color.Blue, "Keypad_B_8");
               
 
             return buttons;

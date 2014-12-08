@@ -58,10 +58,6 @@ C:\Users\Alex\Documents\GitHub\HOTAS Throttle Expansion\HotasNoGadgeteer\Devices
 C:\Users\Alex\Documents\GitHub\HOTAS Throttle Expansion\HotasNoGadgeteer\Devices\obj\Debug\le\Devices.pdbx
 C:\Users\Alex\Documents\GitHub\HOTAS Throttle Expansion\HotasNoGadgeteer\Devices\obj\Debug\Devices.dll
 C:\Users\Alex\Documents\GitHub\HOTAS Throttle Expansion\HotasNoGadgeteer\Devices\obj\Debug\Devices.pdb
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\Devices.csprojResolveAssemblyReference.cache
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\TinyCLR_DebugReferences.cache
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\Devices.dll
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\Devices.pdb
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\bin\Debug\le\Devices.dll
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\bin\Debug\be\Devices.dll
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\bin\Debug\le\Devices.pdb
@@ -90,7 +86,11 @@ C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\bin\Debug\HardWare.dll
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\bin\Debug\Core.pdb
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\bin\Debug\FrameWork.pdb
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\bin\Debug\HardWare.pdb
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\Devices.csprojResolveAssemblyReference.cache
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\TinyCLR_DebugReferences.cache
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\be\Devices.pe
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\be\Devices.pdbx
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\le\Devices.pe
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\le\Devices.pdbx
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\Devices.dll
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Devices\obj\Debug\Devices.pdb

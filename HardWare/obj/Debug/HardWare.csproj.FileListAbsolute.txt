@@ -40,9 +40,9 @@ C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\bin\Debug\FrameWork.dll
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\bin\Debug\FrameWork.pdb
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\HardWare.csprojResolveAssemblyReference.cache
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\TinyCLR_DebugReferences.cache
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\HardWare.dll
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\HardWare.pdb
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\be\HardWare.pe
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\be\HardWare.pdbx
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\le\HardWare.pe
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\le\HardWare.pdbx
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\HardWare.dll
+C:\Users\Alex\Documents\GitHub\HandsOnThrottle\HardWare\obj\Debug\HardWare.pdb

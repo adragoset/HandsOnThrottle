@@ -28,11 +28,11 @@ namespace Core.LedController
 
             CommonAnode = commonAnode;
 
-            RedChannel = outputs[0];
+            RedChannel = outputs[2];
 
             GreenChannel = outputs[1];
 
-            BlueChannel = outputs[2];
+            BlueChannel = outputs[0];
         }
 
         private void Write(uint red, uint green, uint blue)
@@ -56,9 +56,6 @@ namespace Core.LedController
                 this.GreenChannel.DutyCycle = 50;
                 this.BlueChannel.DutyCycle = 50;
 
-                this.RedChannel.Start();
-                this.GreenChannel.Start();
-                this.BlueChannel.Start();
             }
         }
 

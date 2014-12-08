@@ -178,12 +178,14 @@ namespace HotasNoGadgeteer
 
             var outPutPorts = new OutputPort[] { led1, led2, led3, led3, led4, led5, led6, led7, led8 };
 
-            var Pwm1 = new PWM(Cpu.PWMChannel.PWM_3, 10, 50, PWM.ScaleFactor.Microseconds, false);
+            var Pwm1 = new PWM(Cpu.PWMChannel.PWM_3, 10, 0, PWM.ScaleFactor.Microseconds, false);
+            Pwm1.Stop();
 
-            var Pwm2 = new PWM(Cpu.PWMChannel.PWM_4, 10, 50, PWM.ScaleFactor.Microseconds, false);
+            var Pwm2 = new PWM(Cpu.PWMChannel.PWM_5, 10, 0, PWM.ScaleFactor.Microseconds, false);
+            Pwm2.Stop();
 
-            var Pwm3 = new PWM(Cpu.PWMChannel.PWM_5, 10, 50, PWM.ScaleFactor.Microseconds, false);
-
+            var Pwm3 = new PWM(Cpu.PWMChannel.PWM_1, 10, 0, PWM.ScaleFactor.Microseconds, false);
+            Pwm3.Stop();
             PWM[] pwmOutputs = new PWM[] { Pwm1, Pwm2, Pwm3 };
 
             KeyPad = new KeyPad(keyPadInputs, outPutPorts, pwmOutputs, "");
@@ -208,36 +210,36 @@ namespace HotasNoGadgeteer
                 Interrupts[24].GetInput(), 
                 Interrupts[25].GetInput(), 
                 Interrupts[26].GetInput(), 
-                Interrupts[27].GetInput(),
-                Interrupts[28].GetInput(), 
+                Interrupts[28].GetInput(),
                 Interrupts[29].GetInput(), 
                 Interrupts[30].GetInput(), 
-                Interrupts[31].GetInput(),
-                Interrupts[32].GetInput(), 
+                Interrupts[31].GetInput(), 
+                Interrupts[32].GetInput(),
                 Interrupts[33].GetInput(), 
                 Interrupts[34].GetInput(), 
-                Interrupts[35].GetInput(),
-                Interrupts[36].GetInput(), 
+                Interrupts[35].GetInput(), 
+                Interrupts[36].GetInput(),
                 Interrupts[37].GetInput(), 
                 Interrupts[38].GetInput(), 
-                Interrupts[39].GetInput(),
-                Interrupts[40].GetInput(), 
+                Interrupts[39].GetInput(), 
+                Interrupts[40].GetInput(),
                 Interrupts[41].GetInput(), 
                 Interrupts[42].GetInput(), 
-                Interrupts[43].GetInput(),
-                Interrupts[44].GetInput(), 
+                Interrupts[43].GetInput(), 
+                Interrupts[44].GetInput(),
                 Interrupts[45].GetInput(), 
                 Interrupts[46].GetInput(), 
+                Interrupts[47].GetInput(), 
             };
 
             GamePad1 = new GamePad1(ADC, GamePad1Inputs);
 
             InterruptInput[] GamePad2Inputs = new InterruptInput[] { 
 
-                Interrupts[47].GetInput(),
-                Interrupts[48].GetInput(), 
+                Interrupts[48].GetInput(),
                 Interrupts[49].GetInput(), 
-                Interrupts[50].GetInput()
+                Interrupts[50].GetInput(), 
+                Interrupts[51].GetInput()
             };
 
             GamePad2 = new GamePad2(KeyPad, GamePad2Inputs);
