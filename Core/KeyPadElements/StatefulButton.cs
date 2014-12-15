@@ -33,10 +33,9 @@ namespace Core.KeyPadElements
 
         public Color GetCurrentColor()
         {
-            lock (button_lock)
-            {
+            
                 return this.CurrentColor;
-            }
+           
         }
 
         protected override void Button_Pressed(InterruptInput sender, bool value)

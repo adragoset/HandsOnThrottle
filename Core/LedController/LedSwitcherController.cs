@@ -9,6 +9,7 @@ namespace Core.LedController
     {
         private static object device_lock = new object();
         private OutputPort[] LedBank;
+        private int litLedIndex = 0;
 
 
         public LedSwitcherController(OutputPort[] outputs)
@@ -23,21 +24,14 @@ namespace Core.LedController
                 throw new ArgumentException("LED number must be <= than the total number of LEDs");
             }
 
-            lock (device_lock)
-            {
-                LedBank[led - 1].Write(true);
-            }
+            litLedIndex = led - 1;
+            LedBank[led - 1].Write(true);
+
         }
 
         public virtual void SetToOffState()
         {
-            lock (device_lock)
-            {
-                for (var i = 0; i < LedBank.Length; i++)
-                {
-                    LedBank[i].Write(false);
-                }
-            }
+            LedBank[litLedIndex].Write(false);
         }
 
     }

@@ -174,17 +174,17 @@ namespace HotasNoGadgeteer
             var led5 = new OutputPort(G120II.MainBoardIoSocket1[4], false);
             var led6 = new OutputPort(G120II.MainBoardIoSocket1[5], false);
             var led7 = new OutputPort(G120II.MainBoardIoSocket1[6], false);
-            var led8 = new OutputPort(G120II.MainBoardIoSocket2[0], false);
+            var led8 = new OutputPort(G120II.MainBoardIoSocket2[1], false);
 
-            var outPutPorts = new OutputPort[] { led1, led2, led3, led3, led4, led5, led6, led7, led8 };
+            var outPutPorts = new OutputPort[] { led1, led2, led3, led4, led5, led6, led7, led8 };
 
-            var Pwm1 = new PWM(Cpu.PWMChannel.PWM_3, 10, 0, PWM.ScaleFactor.Microseconds, false);
+            var Pwm1 = new PWM(Cpu.PWMChannel.PWM_3, 100, 0, PWM.ScaleFactor.Nanoseconds, false);
             Pwm1.Stop();
 
-            var Pwm2 = new PWM(Cpu.PWMChannel.PWM_5, 10, 0, PWM.ScaleFactor.Microseconds, false);
+            var Pwm2 = new PWM(Cpu.PWMChannel.PWM_5, 100, 0, PWM.ScaleFactor.Nanoseconds, false);
             Pwm2.Stop();
 
-            var Pwm3 = new PWM(Cpu.PWMChannel.PWM_1, 10, 0, PWM.ScaleFactor.Microseconds, false);
+            var Pwm3 = new PWM(Cpu.PWMChannel.PWM_1, 100, 0, PWM.ScaleFactor.Nanoseconds, false);
             Pwm3.Stop();
             PWM[] pwmOutputs = new PWM[] { Pwm1, Pwm2, Pwm3 };
 
@@ -250,7 +250,7 @@ namespace HotasNoGadgeteer
 
             TrackBallFrameTimer = new ExtendedTimer(Report_TrackBall_Frame, null, 0, 5);
             ThrottleFrameTimer = new ExtendedTimer(Report_Throttle_Frame, null, 0, 10);
-            LedTimer = new ExtendedTimer(Cycle_Led, null, 0, 1);
+            LedTimer = new ExtendedTimer(Cycle_Led, null, 0, 17);
         }
 
         private void Report_TrackBall_Frame(object sender)
@@ -272,9 +272,7 @@ namespace HotasNoGadgeteer
 
         private void Cycle_Led(object state)
         {
-            LedTimer.Dispose();
             KeyPad.RunButtonLEDStates();
-            LedTimer = new ExtendedTimer(Cycle_Led, null, 0, 1);
         }
 
     }

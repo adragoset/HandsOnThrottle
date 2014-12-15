@@ -37,8 +37,7 @@ namespace Core.LedController
 
         private void Write(uint red, uint green, uint blue)
         {
-            lock (device_lock)
-            {
+            
                 // Values are sent from 0 to 255, but we actually want 0 to 100.
                 uint uRed = (red * 100 / 255);
                 uint uGreen = (green * 100 / 255);
@@ -52,11 +51,11 @@ namespace Core.LedController
                 }
 
                 // Sets the values
-                this.RedChannel.DutyCycle = 50;
-                this.GreenChannel.DutyCycle = 50;
-                this.BlueChannel.DutyCycle = 50;
+                this.RedChannel.DutyCycle = 100;
+                this.GreenChannel.DutyCycle = 100;
+                this.BlueChannel.DutyCycle = 100;
 
-            }
+            
         }
 
         public void SetColor(Color color)

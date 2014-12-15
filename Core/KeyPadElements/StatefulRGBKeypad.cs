@@ -65,6 +65,19 @@ namespace Core.KeyPadElements
             return allButtons;
         }
 
+        public Color[] KeypadColorState() {
+            Color[] results = new Color[8];
+            int index = 1;
+            results[0] = CommandButton.GetCurrentColor();
+         
+            foreach (var button in Buttons) {
+                results[index] = button.GetCurrentColor();
+                index++;
+            }
+
+            return results;
+        }
+
         public void Clear()
         {
             CommandButton.ResetColorState();
