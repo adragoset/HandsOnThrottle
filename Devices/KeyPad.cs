@@ -94,24 +94,24 @@ namespace Devices
 
         public void RunButtonLEDStates()
         {
-            var buttonColors = KeyPadState.KeypadColorState();       
+            var buttonColors = KeyPadState.KeypadColorState();
+
             LedController.SetLed(1, buttonColors[0]);
-            Thread.Sleep(2);
-            LedController.SetLed(2, buttonColors[1]);
-            Thread.Sleep(2);
-            LedController.SetLed(3, buttonColors[2]);
-            Thread.Sleep(2);
-            LedController.SetLed(4, buttonColors[3]);
-            Thread.Sleep(2);
-            LedController.SetLed(5, buttonColors[4]);
-            Thread.Sleep(2);
-            LedController.SetLed(6, buttonColors[5]);
-            Thread.Sleep(2);
+            Thread.Sleep(1);
             LedController.SetLed(7, buttonColors[6]);
-            Thread.Sleep(2);
+            Thread.Sleep(1);
+            LedController.SetLed(6, buttonColors[5]);
+            Thread.Sleep(1);
+            LedController.SetLed(2, buttonColors[1]);
+            Thread.Sleep(1);
+            LedController.SetLed(3, buttonColors[2]);
+            Thread.Sleep(1);
+            LedController.SetLed(5, buttonColors[4]);
+            Thread.Sleep(1);
+            LedController.SetLed(4, buttonColors[3]);
+            Thread.Sleep(1);
             LedController.SetLed(8, buttonColors[7]);
-            Thread.Sleep(2);
-            
+            Thread.Sleep(1);
         }
     }
 }

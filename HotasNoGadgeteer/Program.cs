@@ -14,8 +14,6 @@ namespace HotasNoGadgeteer
     {
         private BlackberryTrackBall TrackBall;
 
-        private ExtendedTimer TrackBallFrameTimer;
-
         private ExtendedTimer ThrottleFrameTimer;
 
         private ExtendedTimer LedTimer;
@@ -248,23 +246,16 @@ namespace HotasNoGadgeteer
         private void StartFrameTimers()
         {
 
-            TrackBallFrameTimer = new ExtendedTimer(Report_TrackBall_Frame, null, 0, 5);
             ThrottleFrameTimer = new ExtendedTimer(Report_Throttle_Frame, null, 0, 10);
-            LedTimer = new ExtendedTimer(Cycle_Led, null, 0, 17);
+            LedTimer = new ExtendedTimer(Cycle_Led, null, 0, 10);
         }
 
-        private void Report_TrackBall_Frame(object sender)
-        {
-            lock (Device)
-            {
-                Device.WriteTrackBallReport(TrackBall.GetDeviceState());
-            }
-        }
 
         private void Report_Throttle_Frame(object sender)
         {
             lock (Device)
             {
+                Device.WriteTrackBallReport(TrackBall.GetDeviceState());
                 Device.WriteGamePad1Report(GamePad1.GetDeviceState());
                 Device.WriteGamePad2Report(GamePad2.GetDeviceState());
             }
