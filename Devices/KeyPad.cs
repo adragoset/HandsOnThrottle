@@ -44,20 +44,17 @@ namespace Devices
 
         private void InitializeLedController(StatefulButton commandButton, StatefulButton[] buttons)
         {
-            Led[] leds = new Led[buttons.Length + 1];
             var color = ColorCode.GetColorCode(commandButton.GetCurrentColor());
-            int counter = 0;
-            leds[counter] = new Led(commandButton.LEDIndex, color.R, color.G, color.B);
-            counter++;
+
+            LedController.UpdateLed(new Led(commandButton.LEDIndex, color.R, color.G, color.B));
 
             foreach (var button in buttons)
             {
                 color = ColorCode.GetColorCode(button.GetCurrentColor());
-                leds[counter] = new Led(button.LEDIndex, color.R, color.G, color.B);
-                counter++;
+                LedController.UpdateLed(new Led(button.LEDIndex, color.R, color.G, color.B));
             }
 
-            LedController.InitializeColors(leds);
+
         }
 
         private StatefulButton[] getButtons(PageState[] pageState)

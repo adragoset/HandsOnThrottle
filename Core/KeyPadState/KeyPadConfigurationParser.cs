@@ -28,7 +28,9 @@ namespace Core.KeyPadState
                             Color.SeaFoamGreen,
                             Color.Pink,
                             Color.Purple,
-                            Color.Blue
+                            Color.Blue,
+                            Color.Red,
+                            Color.White
                         }
                 },
                 PageStates = new PageState[]{
