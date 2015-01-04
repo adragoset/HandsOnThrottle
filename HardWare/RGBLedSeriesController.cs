@@ -15,33 +15,6 @@ namespace HardWare
             Bus = I2CBusFactory.Create(I2C_ADDRESS, 400);
         }
 
-        public void InitializeColors(Led[] leds)
-        {
-
-            byte[] data = new byte[33];
-            int counter = 0;
-            data[counter] = 9;
-            counter++;
-
-            foreach (var led in leds) {
-                var ledData = led.GetData();
-                data[counter] = ledData[0];
-                counter++;
-                data[counter] = ledData[1];
-                counter++;
-                data[counter] = ledData[2];
-                counter++;
-                data[counter] = ledData[3];
-                counter++;
-            }
-
-            lock (Bus)
-            {
-                Bus.Write(data);
-            }
-            
-        }
-
         public void UpdateLed(Led led) {
             lock (Bus)
             {
