@@ -16,13 +16,15 @@ namespace HotasNoGadgeteer
 
         private ExtendedTimer ThrottleFrameTimer;
 
-        private ExtendedTimer LedTimer;
+        private ExtendedTimer TrackBallTimer;
 
         private HotasThrottle Device;
 
         private HubAP5 Hub;
 
         private ADS1115 ADC;
+
+        private RGBLedSeriesController LedController;
 
         private AssignableInterrupt[] Interrupts;
 
@@ -60,6 +62,7 @@ namespace HotasNoGadgeteer
                 ADS1115.ComparatorLatch.None,
                 ADS1115.ComparatorQueue.Disable
                 );
+            LedController = new RGBLedSeriesController();
         }
 
         private void InitializeInterrupts()
@@ -165,28 +168,8 @@ namespace HotasNoGadgeteer
                 Interrupts[10].GetInput() 
             };
 
-            var led1 = new OutputPort(G120II.MainBoardIoSocket1[0], false);
-            var led2 = new OutputPort(G120II.MainBoardIoSocket1[1], false);
-            var led3 = new OutputPort(G120II.MainBoardIoSocket1[2], false);
-            var led4 = new OutputPort(G120II.MainBoardIoSocket1[3], false);
-            var led5 = new OutputPort(G120II.MainBoardIoSocket1[4], false);
-            var led6 = new OutputPort(G120II.MainBoardIoSocket1[5], false);
-            var led7 = new OutputPort(G120II.MainBoardIoSocket1[6], false);
-            var led8 = new OutputPort(G120II.MainBoardIoSocket2[1], false);
+            KeyPad = new KeyPad(LedController, keyPadInputs, "");
 
-            var outPutPorts = new OutputPort[] { led1, led2, led3, led4, led5, led6, led7, led8 };
-
-            var Pwm1 = new PWM(Cpu.PWMChannel.PWM_3, 100, 0, PWM.ScaleFactor.Nanoseconds, false);
-            Pwm1.Stop();
-
-            var Pwm2 = new PWM(Cpu.PWMChannel.PWM_5, 100, 0, PWM.ScaleFactor.Nanoseconds, false);
-            Pwm2.Stop();
-
-            var Pwm3 = new PWM(Cpu.PWMChannel.PWM_1, 100, 0, PWM.ScaleFactor.Nanoseconds, false);
-            Pwm3.Stop();
-            PWM[] pwmOutputs = new PWM[] { Pwm1, Pwm2, Pwm3 };
-
-            KeyPad = new KeyPad(keyPadInputs, outPutPorts, pwmOutputs, "");
         }
 
         private void InitializeGamePads()
@@ -245,25 +228,27 @@ namespace HotasNoGadgeteer
 
         private void StartFrameTimers()
         {
-
             ThrottleFrameTimer = new ExtendedTimer(Report_Throttle_Frame, null, 0, 10);
-            LedTimer = new ExtendedTimer(Cycle_Led, null, 0, 10);
+            TrackBallTimer = new ExtendedTimer(Report_Mouse_Frame, null, 0, 5);
         }
 
-
-        private void Report_Throttle_Frame(object sender)
+        private void Report_Mouse_Frame(object state)
         {
             lock (Device)
             {
                 Device.WriteTrackBallReport(TrackBall.GetDeviceState());
-                Device.WriteGamePad1Report(GamePad1.GetDeviceState());
-                Device.WriteGamePad2Report(GamePad2.GetDeviceState());
             }
         }
 
-        private void Cycle_Led(object state)
+        private void Report_Throttle_Frame(object sender)
         {
-            KeyPad.RunButtonLEDStates();
+
+            lock (Device)
+            {
+               
+                Device.WriteGamePad1Report(GamePad1.GetDeviceState());
+                Device.WriteGamePad2Report(GamePad2.GetDeviceState());
+            }
         }
 
     }

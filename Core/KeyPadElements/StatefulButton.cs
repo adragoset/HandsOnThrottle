@@ -1,6 +1,7 @@
 using System;
 using Microsoft.SPOT;
 using FrameWork;
+using HardWare;
 
 namespace Core.KeyPadElements
 {
@@ -12,15 +13,18 @@ namespace Core.KeyPadElements
 
         private Color CurrentColor { get; set; }
 
-        public int LEDIndex { get; private set; }
+        public uint LEDIndex { get; private set; }
 
-        public StatefulButton(int id, InterruptInput ioPin, int ledIndex, Color[] stateList, Color initialColor, Color currentColor, string name)
+        private RGBLedSeriesController LedController;
+
+        public StatefulButton(int id, InterruptInput ioPin, RGBLedSeriesController controller, uint ledIndex, Color[] stateList, Color initialColor, Color currentColor, string name)
             : base(id, ioPin, name)
         {
             LEDIndex = ledIndex;
             this.StateList = stateList;
             this.InitialColor = initialColor;
             this.CurrentColor = currentColor;
+            LedController = controller;
         }
 
         public void ResetColorState()
@@ -33,17 +37,24 @@ namespace Core.KeyPadElements
 
         public Color GetCurrentColor()
         {
-            
+            lock (button_lock)
+            {
                 return this.CurrentColor;
-           
+            }
         }
 
         protected override void Button_Pressed(InterruptInput sender, bool value)
         {
             base.Button_Pressed(sender, value);
-            lock (button_lock)
-            {
-                TransitionState();
+            if (this.WasPressed()) {
+                ColorCode color = null;
+                lock (button_lock)
+                {
+                    TransitionState();
+                    color = ColorCode.GetColorCode(this.CurrentColor);
+                }
+
+                LedController.UpdateLed(new Led(this.LEDIndex, color.R, color.G, color.B));
             }
         }
 

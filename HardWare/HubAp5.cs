@@ -467,7 +467,7 @@ namespace HardWare
             {
                 this.io60Chip = I2CBusFactory.Create(0x20, 100);
 
-                this.interrupt = new InterruptPort(interrUptPin, true, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeHigh); 
+                this.interrupt = new InterruptPort(interrUptPin, false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeHigh); 
                 this.interrupt.OnInterrupt += this.OnInterrupt;
             }
 

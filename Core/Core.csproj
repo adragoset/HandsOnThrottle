@@ -40,9 +40,6 @@
     <Compile Include="KeyPadState\KeyPadConfigurationParser.cs" />
     <Compile Include="KeyPadState\KeyPadState.cs" />
     <Compile Include="KeyPadState\PageState.cs" />
-    <Compile Include="LedController\LedSwitcherController.cs" />
-    <Compile Include="LedController\RgbLedColorController.cs" />
-    <Compile Include="LedController\RgbLedSeriesController.cs" />
     <Compile Include="MomentaryButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Button.cs" />
@@ -58,6 +55,10 @@
     <ProjectReference Include="..\FrameWork\FrameWork.csproj">
       <Project>{FA41CA92-0098-4248-B9F9-CB5F3926947F}</Project>
       <Name>FrameWork</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\HardWare\HardWare.csproj">
+      <Project>{315BEFCC-E64B-492F-A3A9-4486578200D0}</Project>
+      <Name>HardWare</Name>
     </ProjectReference>
   </ItemGroup>
 </Project>

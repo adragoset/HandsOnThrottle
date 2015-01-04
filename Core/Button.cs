@@ -17,6 +17,8 @@ namespace Core
 
         private InterruptInput input;
 
+        private ExtendedTimer timer;
+
         public Button(int id, InterruptInput ioPin, string name)
         {
             button_lock = new object();
@@ -31,6 +33,11 @@ namespace Core
 
         }
 
+        private void Test_Button(object state)
+        {
+            throw new NotImplementedException();
+        }
+
         public virtual bool WasPressed()
         {
             lock (button_lock)
@@ -41,19 +48,18 @@ namespace Core
 
         protected virtual void Button_Pressed(InterruptInput sender, bool value)
         {
-
-
             lock (button_lock)
             {
-                if (wasPressed)
-                {
-                    wasPressed = false;
-                }
-                else
+                if (!wasPressed)
                 {
                     wasPressed = true;
                 }
+                else {
+                    wasPressed = false;
+                }
+
             }
         }
+
     }
 }

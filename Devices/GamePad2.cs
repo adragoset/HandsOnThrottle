@@ -71,23 +71,23 @@ namespace Devices
             {
                 if (key <= 8)
                 {
-                    ByteHelper.FlipBitInByte(result[0], key);
+                    result[0] = ByteHelper.FlipBitInByte(result[0], key);
                 }
                 else if (key <= 16)
                 {
-                    ByteHelper.FlipBitInByte(result[1], key);
+                    result[1] = ByteHelper.FlipBitInByte(result[1], key);
                 }
                 else if (key <= 24)
                 {
-                    ByteHelper.FlipBitInByte(result[2], key);
+                    result[2] = ByteHelper.FlipBitInByte(result[2], key);
                 }
                 else if (key <= 32)
                 {
-                    ByteHelper.FlipBitInByte(result[3], key);
+                   result[3] = ByteHelper.FlipBitInByte(result[3], key);
                 }
                 else if (key <= 35)
                 {
-                    ByteHelper.FlipBitInByte(result[4], key);
+                    result[4] = ByteHelper.FlipBitInByte(result[4], key);
                 }
                 else
                 {
