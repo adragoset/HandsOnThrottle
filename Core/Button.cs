@@ -17,7 +17,6 @@ namespace Core
 
         private InterruptInput input;
 
-        private ExtendedTimer timer;
 
         public Button(int id, InterruptInput ioPin, string name)
         {
@@ -50,14 +49,11 @@ namespace Core
         {
             lock (button_lock)
             {
-                if (!wasPressed)
+                var state = !input.Read();
+                if (state != wasPressed)
                 {
-                    wasPressed = true;
+                    wasPressed = state;
                 }
-                else {
-                    wasPressed = false;
-                }
-
             }
         }
 

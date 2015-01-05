@@ -43,9 +43,7 @@ namespace HotasNoGadgeteer
             p.InitializeDevices();
             p.StartFrameTimers();
 
-            while (true) {
-                Thread.Sleep(1000);
-            }
+           
         }
 
         private void InitializeHardWare()
@@ -191,6 +189,7 @@ namespace HotasNoGadgeteer
                 Interrupts[24].GetInput(), 
                 Interrupts[25].GetInput(), 
                 Interrupts[26].GetInput(), 
+                 
                 Interrupts[28].GetInput(),
                 Interrupts[29].GetInput(), 
                 Interrupts[30].GetInput(), 

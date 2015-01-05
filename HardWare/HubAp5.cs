@@ -360,6 +360,7 @@ namespace HardWare
             private I2CBus io60Chip;
             private InterruptPort interrupt;
             private ArrayList interruptHandlers = new ArrayList();
+            private Cpu.Pin interruptPin;
             private byte[] write2 = new byte[2];
             private byte[] write1 = new byte[1];
             private byte[] read1 = new byte[1];
@@ -436,8 +437,15 @@ namespace HardWare
                 return result;
             }
 
+            private object Interrupt_lock = new object();
+
             private void OnInterrupt(uint data1, uint data2, DateTime time)
             {
+                lock (this.Interrupt_lock)
+                {
+                    this.interrupt.Dispose();
+                }
+                
                 ArrayList interruptedPins = new ArrayList();
 
                 byte[] intPorts = this.readRegisters(IO60P16.INTERRUPT_PORT_0_REGISTER, 8);
@@ -461,13 +469,22 @@ namespace HardWare
                         }
                     }
                 }
+
+                lock (this.Interrupt_lock) {
+                    RegisterInterruptPort();
+                }
             }
 
             public IO60P16(Cpu.Pin interrUptPin)
             {
                 this.io60Chip = I2CBusFactory.Create(0x20, 100);
+                this.interruptPin = interrUptPin;
+                RegisterInterruptPort();
+            }
 
-                this.interrupt = new InterruptPort(interrUptPin, false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeHigh); 
+            private void RegisterInterruptPort()
+            {
+                this.interrupt = new InterruptPort(this.interruptPin, false, Port.ResistorMode.PullUp, Port.InterruptMode.InterruptEdgeHigh);
                 this.interrupt.OnInterrupt += this.OnInterrupt;
             }
 
