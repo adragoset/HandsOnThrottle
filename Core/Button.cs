@@ -49,7 +49,7 @@ namespace Core
         {
             lock (button_lock)
             {
-                var state = !input.Read();
+                var state = !value;
                 if (state != wasPressed)
                 {
                     wasPressed = state;

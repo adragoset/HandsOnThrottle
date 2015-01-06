@@ -30,6 +30,7 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
+    <Compile Include="AssignableInput.cs" />
     <Compile Include="AssignableInterrupt.cs" />
     <Compile Include="Delegates.cs" />
     <Compile Include="enum.cs" />
@@ -42,6 +43,7 @@
     <Compile Include="IO\DigitalIO.cs" />
     <Compile Include="IO\DigitalOutput.cs" />
     <Compile Include="IO\Factories\AnalogInputFactory.cs" />
+    <Compile Include="IO\Factories\DigitalInputFactory.cs" />
     <Compile Include="IO\Factories\InterruptInputFactory.cs" />
     <Compile Include="IO\Factories\PwmOutputFactory.cs" />
     <Compile Include="IO\InterruptInput.cs" />

@@ -95,6 +95,10 @@ namespace HardWare
             }
         }
 
+        public void ClearInterrupts() {
+            io60.runInterrupts();
+        }
+
         private byte GetPin(Socket socket, Socket.Pin pin)
         {
             return this.pinMap[(int)(this.socketMap[socket.SocketNumber]) * 7 + (int)(pin) - 3];
@@ -441,11 +445,14 @@ namespace HardWare
 
             private void OnInterrupt(uint data1, uint data2, DateTime time)
             {
-                lock (this.Interrupt_lock)
-                {
-                    this.interrupt.Dispose();
-                }
                 
+
+                runInterrupts();
+
+                
+            }
+
+            public void runInterrupts() {
                 ArrayList interruptedPins = new ArrayList();
 
                 byte[] intPorts = this.readRegisters(IO60P16.INTERRUPT_PORT_0_REGISTER, 8);
@@ -468,10 +475,6 @@ namespace HardWare
                             }
                         }
                     }
-                }
-
-                lock (this.Interrupt_lock) {
-                    RegisterInterruptPort();
                 }
             }
 

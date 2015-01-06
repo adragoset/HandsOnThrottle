@@ -43,7 +43,9 @@ namespace HotasNoGadgeteer
             p.InitializeDevices();
             p.StartFrameTimers();
 
-           
+           while(true){
+               Thread.Sleep(1000);
+           }
         }
 
         private void InitializeHardWare()
@@ -244,7 +246,7 @@ namespace HotasNoGadgeteer
 
             lock (Device)
             {
-               
+                Hub.ClearInterrupts();
                 Device.WriteGamePad1Report(GamePad1.GetDeviceState());
                 Device.WriteGamePad2Report(GamePad2.GetDeviceState());
             }
