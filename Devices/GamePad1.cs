@@ -31,11 +31,11 @@ namespace Devices
 
             hat_up = new MomentaryButton(1, buttonInputs[0], "Right_Throttle_C_Hat_Up");
 
-            hat_down = new MomentaryButton(2, buttonInputs[1], "Right_Throttle_C_Hat_Down");
+            hat_down = new MomentaryButton(2, buttonInputs[3], "Right_Throttle_C_Hat_Down");
 
-            hat_left = new MomentaryButton(3, buttonInputs[2], "Right_Throttle_C_Hat_Left");
+            hat_left = new MomentaryButton(3, buttonInputs[1], "Right_Throttle_C_Hat_Left");
 
-            hat_right = new MomentaryButton(4, buttonInputs[3], "Right_Throttle_C_Hat_Right");
+            hat_right = new MomentaryButton(3, buttonInputs[2], "Right_Throttle_C_Hat_Right");
 
             this.buttonInputs = new MomentaryButton[32];
 
