@@ -42,9 +42,9 @@ namespace Devices
             }
 
             Pin_Up = trackBallInputs[0];
-            Pin_Down = trackBallInputs[1];
-            Pin_Left = trackBallInputs[2];
-            Pin_Right = trackBallInputs[3];
+            Pin_Down = trackBallInputs[2];
+            Pin_Left = trackBallInputs[3];
+            Pin_Right = trackBallInputs[1];
 
             if (buttonInputs.Length != 3)
             {
@@ -63,7 +63,7 @@ namespace Devices
 
             Led = new RGBLedOutput(ledOutput[0], ledOutput[1], ledOutput[2], false);
 
-            Led.SetColor(Core.Color.Orange);
+            Led.SetColor(Core.Color.Purple);
             TrackState = new TrackBallState();
 
             BindEventHandlers();

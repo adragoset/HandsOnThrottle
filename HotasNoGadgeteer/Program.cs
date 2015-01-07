@@ -43,9 +43,10 @@ namespace HotasNoGadgeteer
             p.InitializeDevices();
             p.StartFrameTimers();
 
-           while(true){
-               Thread.Sleep(1000);
-           }
+            while (true)
+            {
+                Thread.Sleep(1000);
+            }
         }
 
         private void InitializeHardWare()
@@ -144,11 +145,13 @@ namespace HotasNoGadgeteer
 
             var btns = new InterruptInput[] { Interrupts[0].GetInput(), Interrupts[1].GetInput(), Interrupts[2].GetInput() };
 
-            var Pwm1 = new PWM((Cpu.PWMChannel)8, 10, 50, PWM.ScaleFactor.Microseconds, false);
+            var Pwm1 = new PWM((Cpu.PWMChannel)8, 100, 1, false);
 
-            var Pwm2 = new PWM(Cpu.PWMChannel.PWM_7, 10, 50, PWM.ScaleFactor.Microseconds, false);
+            var Pwm2 = new PWM(Cpu.PWMChannel.PWM_7, 100, 1, false);
 
-            var Pwm3 = new PWM(Cpu.PWMChannel.PWM_6, 10, 50, PWM.ScaleFactor.Microseconds, false);
+            var Pwm3 = new PWM(Cpu.PWMChannel.PWM_6, 100, 1, false);
+
+
 
             var ledOutputs = new PWM[] { Pwm1, Pwm2, Pwm3 };
 

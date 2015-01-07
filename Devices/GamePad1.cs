@@ -187,7 +187,7 @@ namespace Devices
             return ByteHelper.FromShort(reading);
         }
 
-        private byte[] GetBytesFromX()
+        private byte[] GetBytesFromY()
         {
             short reading = 0;
 
@@ -209,7 +209,7 @@ namespace Devices
             return ByteHelper.FromShort(reading);
         }
 
-        private byte[] GetBytesFromY()
+        private byte[] GetBytesFromX()
         {
             short reading = 0;
 
