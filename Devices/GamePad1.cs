@@ -3,6 +3,7 @@ using Microsoft.SPOT;
 using Core;
 using FrameWork;
 using HardWare;
+using System.Collections;
 
 namespace Devices
 {
@@ -19,6 +20,14 @@ namespace Devices
         private MomentaryButton hat_left;
 
         private MomentaryButton hat_right;
+
+        private Queue LeftThrottleReadings;
+
+        private Queue RightThrottleReadings;
+
+        private Queue XReadings;
+
+        private Queue YReadings;
 
         public GamePad1(ADS1115 adc, InterruptInput[] buttonInputs)
         {
@@ -43,6 +52,11 @@ namespace Devices
             {
                 this.buttonInputs[index - 4] = new MomentaryButton(index - 3, buttonInputs[index], "Right_Throttle_B_" + (index - 3));
             }
+
+            LeftThrottleReadings = new Queue();
+            RightThrottleReadings = new Queue();
+            XReadings = new Queue();
+            YReadings = new Queue();
 
         }
 
@@ -160,9 +174,10 @@ namespace Devices
               ADS1115.ComparatorQueue.Disable
               );
                 reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_3);
+                return ByteHelper.FromShort(AvgReading(LeftThrottleReadings, reading));
             }
 
-            return ByteHelper.FromShort(reading);
+            
         }
 
         private byte[] GetBytesFromRightThrottle()
@@ -182,9 +197,10 @@ namespace Devices
               ADS1115.ComparatorQueue.Disable
               );
                 reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_2);
+                return ByteHelper.FromShort(AvgReading(RightThrottleReadings, reading));
             }
 
-            return ByteHelper.FromShort(reading);
+            
         }
 
         private byte[] GetBytesFromY()
@@ -204,9 +220,10 @@ namespace Devices
                 ADS1115.ComparatorQueue.Disable
                 );
                 reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_1);
+                return ByteHelper.FromShort(AvgReading(YReadings, reading));
             }
 
-            return ByteHelper.FromShort(reading);
+           
         }
 
         private byte[] GetBytesFromX()
@@ -226,9 +243,33 @@ namespace Devices
                 ADS1115.ComparatorQueue.Disable
                 );
                 reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_4);
+                return ByteHelper.FromShort(AvgReading(XReadings, reading));
             }
 
-            return ByteHelper.FromShort(reading);
+        }
+
+        private short AvgReading(Queue readings, short reading)
+        {
+            if (readings.Count >= 5)
+            {
+                readings.Dequeue();
+            }
+
+            readings.Enqueue(reading);
+            object[] prevReadins = new object[5];
+            readings.CopyTo(prevReadins, 0);
+
+            int averagedValue = 0;
+
+            foreach (var obj in prevReadins)
+            {
+                if (obj != null)
+                {
+                    averagedValue = averagedValue + (short)obj;
+                }
+            }
+
+            return (short)(averagedValue / 5);
         }
 
         public static byte[] GetHidReportDescriptorPayload()

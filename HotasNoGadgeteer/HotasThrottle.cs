@@ -33,6 +33,7 @@ namespace HotasNoGadgeteer
         public HotasThrottle(ushort myVID, ushort myPID, ushort myDeviceVersion, ushort myDeviceMaxPower, string companyName, string productName, string myDeviceSerialNumber) :
             base(myVID, myPID, myDeviceVersion, myDeviceMaxPower, companyName, productName, myDeviceSerialNumber)
         {
+            this.
 
             TrackBallWriteEndpoint = this.ReserveNewEndpoint();
             GamePad1WriteEndpoint = this.ReserveNewEndpoint();
@@ -65,8 +66,8 @@ namespace HotasNoGadgeteer
             var genericTrackBallDescriptor = new Configuration.GenericDescriptor((byte)129, (ushort)8704, BlackberryTrackBall.GetHidReportDescriptorPayload());
             //Add members
             byte Mnum = this.AddInterface(TrackBallInterface, "HOTATrackball");
-            this.AddDescriptor((Configuration.Descriptor)genericTrackBallDescriptor);
             genericTrackBallDescriptor.wIndex = (ushort)Mnum;
+            this.AddDescriptor((Configuration.Descriptor)genericTrackBallDescriptor);
 
             //create the TrackBall stream;
             TrackBallStream = this.CreateStream(TrackBallWriteEndpoint, RawDevice.RawStream.NullEndpoint);
@@ -94,8 +95,8 @@ namespace HotasNoGadgeteer
             Configuration.GenericDescriptor genericGamePad1Descriptor = new Configuration.GenericDescriptor((byte)129, (ushort)8704, GamePad1.GetHidReportDescriptorPayload());
             //Add Members
             byte Jnum = this.AddInterface(gamePad1Interface, "Throttle");
-            this.AddDescriptor((Configuration.Descriptor)genericGamePad1Descriptor);
             genericGamePad1Descriptor.wIndex = (ushort)Jnum;
+            this.AddDescriptor((Configuration.Descriptor)genericGamePad1Descriptor);
 
             GamePad1Stream = this.CreateStream(GamePad1WriteEndpoint, RawDevice.RawStream.NullEndpoint);
         }
@@ -122,8 +123,9 @@ namespace HotasNoGadgeteer
             Configuration.GenericDescriptor genericGamePad2Descriptor = new Configuration.GenericDescriptor((byte)129, (ushort)8704, GamePad2.GetHidReportDescriptorPayload());
             //Add Members
             byte Jnum = this.AddInterface(gamePad2Interface, "KeyPad");
-            this.AddDescriptor((Configuration.Descriptor)genericGamePad2Descriptor);
             genericGamePad2Descriptor.wIndex = (ushort)Jnum;
+            this.AddDescriptor((Configuration.Descriptor)genericGamePad2Descriptor);
+            
 
             GamePad2Stream = this.CreateStream(GamePad2WriteEndpoint, RawDevice.RawStream.NullEndpoint);
         }
