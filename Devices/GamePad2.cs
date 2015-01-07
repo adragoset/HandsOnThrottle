@@ -38,26 +38,28 @@ namespace Devices
 
         public byte[] GetDeviceState()
         {
-            byte[] result = GetBytesForKeyPad(keyPad.ReadButtonPresses());
+            byte[] keypadResult = GetBytesForKeyPad(keyPad.ReadButtonPresses());
+
+            byte[] result = new byte[] { keypadResult[0], keypadResult[1], keypadResult[2], keypadResult[3], keypadResult[4], 4 };
 
             if (hat_up.WasPressed())
             {
-                result[5] = ByteHelper.FlipBitInByte(result[5], hat_up.ButtonId + 3);
+                result[5] = 0;
             }
 
             if (hat_down.WasPressed())
             {
-                result[5] = ByteHelper.FlipBitInByte(result[5], hat_down.ButtonId + 3);
+                result[5] = 1;
             }
 
             if (hat_left.WasPressed())
             {
-                result[5] = ByteHelper.FlipBitInByte(result[5], hat_left.ButtonId + 3);
+                result[5] = 2;
             }
 
             if (hat_right.WasPressed())
             {
-                result[5] = ByteHelper.FlipBitInByte(result[5], hat_right.ButtonId + 3);
+                result[5] = 3;
             }
 
             return result;
@@ -65,7 +67,7 @@ namespace Devices
 
         private static byte[] GetBytesForKeyPad(int[] buttonIds)
         {
-            var result = new byte[6] { 0, 0, 0, 0, 0, 0 };
+            var result = new byte[5] { 0, 0, 0, 0, 0 };
 
             foreach (var key in buttonIds)
             {
@@ -134,10 +136,14 @@ namespace Devices
                  0x75, 0x01,                    //   REPORT_SIZE (1)
                  0x81, 0x02,                    //   INPUT (Data,Var,Abs)
 
+                 0x75, 0x05,                    //   REPORT_SIZE (5)
+                 0x95, 0x01,                    //   REPORT_COUNT (1)
+                 0x81, 0x03,                    //   INPUT (cnst,Var,Abs)
+
                  0x05, 0x01,                    //   USAGE_PAGE (Generic Desktop)
                  0x09, 0x39,                    //   USAGE (Hat switch)
-                 0x15, 0x01,                    //   LOGICAL_MINIMUM (1)
-                 0x25, 0x04,                    //   LOGICAL_MAXIMUM (4)
+                 0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
+                 0x25, 0x03,                    //   LOGICAL_MAXIMUM (3)
                  0x35, 0x00,                    //   PHYSICAL_MINIMUM (0)
                  0x46, 0x0e, 0x01,              //   PHYSICAL_MAXIMUM (270)
                  0x65, 0x14,                    //   UNIT (Eng Rot:Angular Pos)
@@ -145,7 +151,7 @@ namespace Devices
                  0x95, 0x01,                    //   REPORT_COUNT (1)
                  0x81, 0x02,                    //   INPUT (Data,Var,Abs)
 
-                 0x75, 0x09,                    //   REPORT_SIZE (9)
+                 0x75, 0x04,                    //   REPORT_SIZE (4)
                  0x95, 0x01,                    //   REPORT_COUNT (1)
                  0x81, 0x03,                    //   INPUT (cnst,Var,Abs)
 

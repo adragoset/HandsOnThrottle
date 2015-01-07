@@ -22,7 +22,7 @@ namespace Devices
 
         public GamePad1(ADS1115 adc, InterruptInput[] buttonInputs)
         {
-            if (buttonInputs.Length != 36)
+            if (buttonInputs.Length != 32)
             {
                 throw new ArgumentException("You must provide 36 inputs for this device");
             }
@@ -37,7 +37,7 @@ namespace Devices
 
             hat_right = new MomentaryButton(3, buttonInputs[2], "Right_Throttle_C_Hat_Right");
 
-            this.buttonInputs = new MomentaryButton[32];
+            this.buttonInputs = new MomentaryButton[28];
 
             for (int index = 4; index < buttonInputs.Length; index++)
             {

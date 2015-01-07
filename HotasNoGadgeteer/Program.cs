@@ -210,21 +210,17 @@ namespace HotasNoGadgeteer
                 Interrupts[40].GetInput(),
                 Interrupts[41].GetInput(), 
                 Interrupts[42].GetInput(), 
-                Interrupts[43].GetInput(), 
-                Interrupts[44].GetInput(),
-                Interrupts[45].GetInput(), 
-                Interrupts[46].GetInput(), 
-                Interrupts[47].GetInput(), 
+                Interrupts[43].GetInput()
             };
 
             GamePad1 = new GamePad1(ADC, GamePad1Inputs);
 
             InterruptInput[] GamePad2Inputs = new InterruptInput[] { 
 
-                Interrupts[48].GetInput(),
-                Interrupts[49].GetInput(), 
-                Interrupts[50].GetInput(), 
-                Interrupts[51].GetInput()
+                Interrupts[44].GetInput(),
+                Interrupts[45].GetInput(), 
+                Interrupts[46].GetInput(), 
+                Interrupts[47].GetInput(), 
             };
 
             GamePad2 = new GamePad2(KeyPad, GamePad2Inputs);
