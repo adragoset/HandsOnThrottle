@@ -7,7 +7,7 @@ namespace Core
 {
     public abstract class Button
     {
-        public int ButtonId { get; private set; }
+        private int buttonId { get; set; }
 
         public string ButtonName { get; private set; }
 
@@ -21,7 +21,7 @@ namespace Core
         public Button(int id, InterruptInput ioPin, string name)
         {
             button_lock = new object();
-            ButtonId = id;
+            buttonId = id;
 
             input = ioPin;
 
@@ -35,6 +35,12 @@ namespace Core
         private void Test_Button(object state)
         {
             throw new NotImplementedException();
+        }
+
+        public virtual int ButtonId(){
+            lock(button_lock){
+                return this.buttonId;
+            }
         }
 
         public virtual bool WasPressed()

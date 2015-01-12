@@ -6,8 +6,8 @@ namespace Core.KeyPadElements
 {
     public class StatefulRGBKeypad : RGBKeypad
     {
-      
 
+        private bool CommandStateObserved = false; 
         public StatefulRGBKeypad(StatefulButton[] buttons, StatefulButton commandButton)
             : base(buttons, commandButton)
         {
@@ -16,61 +16,64 @@ namespace Core.KeyPadElements
 
         public void IncrementPage()
         {
-            
+
         }
 
         public void HomePage()
         {
-            
+
         }
 
         public override void SetPage(int pageNumber)
         {
-           
+
             base.SetPage(pageNumber);
-           
+
         }
 
-        public StatefulButton[] PressedButtons()
+        public int[] PressedButtons()
         {
 
-            StatefulButton[] allButtons = null;
-
+            int[] allButtons = new int[8];
+            bool commandWasPressed = false;
             if (CommandButton.WasPressed())
             {
-                allButtons = new StatefulButton[1];
-                allButtons[0] = CommandButton;
-            }
-            else
-            {
-                ArrayList buttons = new ArrayList();
-
-                for (int i = 0; i < Buttons.Length; i++)
+                if (!CommandStateObserved)
                 {
-                    if (Buttons[i].WasPressed())
-                    {
-                        buttons.Add(Buttons[i]);
-                    }
+                    commandWasPressed = true;
+                    CommandStateObserved = true;
                 }
 
-                allButtons = new StatefulButton[buttons.Count];
+                allButtons[0] = CommandButton.ButtonId();
+            }
+            else {
+                CommandStateObserved = false;
+            }
 
-                int index = 0;
-                foreach (var button in buttons) {
-                    allButtons[index] = (StatefulButton)button;
-                    index++;
+            for (int i = 0; i < Buttons.Length; i++)
+            {
+                if (Buttons[i].WasPressed())
+                {
+                    allButtons[i + 1] = Buttons[i].ButtonId();
+                }
+
+                if (commandWasPressed)
+                {
+                    Buttons[i].IncrementState();
                 }
             }
 
             return allButtons;
         }
 
-        public Color[] KeypadColorState() {
+        public Color[] KeypadColorState()
+        {
             Color[] results = new Color[8];
             int index = 1;
             results[0] = CommandButton.GetCurrentColor();
-         
-            foreach (var button in Buttons) {
+
+            foreach (var button in Buttons)
+            {
                 results[index] = button.GetCurrentColor();
                 index++;
             }

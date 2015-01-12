@@ -2,28 +2,26 @@ using System;
 using Microsoft.SPOT;
 using FrameWork;
 using HardWare;
+using Core.KeyPadState;
 
 namespace Core.KeyPadElements
 {
     public class StatefulButton : Button
     {
-        public Color[] StateList { get; set; }
+        private ButtonState StateList;
 
-        public Color InitialColor { get; private set; }
-
-        private Color CurrentColor { get; set; }
+        private VirtualButton CurrentState;
 
         public uint LEDIndex { get; private set; }
 
         private RGBLedSeriesController LedController;
 
-        public StatefulButton(int id, InterruptInput ioPin, RGBLedSeriesController controller, uint ledIndex, Color[] stateList, Color initialColor, Color currentColor, string name)
+        public StatefulButton(int id, InterruptInput ioPin, RGBLedSeriesController controller, uint ledIndex, ButtonState stateList, string name)
             : base(id, ioPin, name)
         {
             LEDIndex = ledIndex;
             this.StateList = stateList;
-            this.InitialColor = initialColor;
-            this.CurrentColor = currentColor;
+            CurrentState = StateList.States[0];
             LedController = controller;
         }
 
@@ -31,7 +29,7 @@ namespace Core.KeyPadElements
         {
             lock (button_lock)
             {
-                CurrentColor = InitialColor;
+                this.CurrentState.CurrentColor = this.CurrentState.InitialColor;
             }
         }
 
@@ -39,7 +37,53 @@ namespace Core.KeyPadElements
         {
             lock (button_lock)
             {
-                return this.CurrentColor;
+                return this.CurrentState.CurrentColor;
+            }
+        }
+
+        public void Home() {
+            CurrentState = StateList.States[0];
+            ColorCode color = null;
+            lock (button_lock)
+            {
+                color = ColorCode.GetColorCode(CurrentState.InitialColor);
+            }
+
+            LedController.UpdateLed(new Led(this.LEDIndex, color.R, color.G, color.B));
+        }
+
+        public void IncrementState() {
+            int index = -1;
+
+            lock (button_lock)
+            {
+
+                for (var i = 0; i < this.StateList.States.Length; i++)
+                {
+                    if (this.StateList.States[i] == this.CurrentState)
+                    {
+                        index = i;
+                        break;
+                    }
+                }
+
+                if (index == -1)
+                {
+                    throw new InvalidOperationException("Current state is not in list");
+                }
+
+                if (index + 1 < this.StateList.States.Length)
+                {
+                    this.CurrentState = this.StateList.States[index + 1];
+                }
+                else
+                {
+                    this.CurrentState = this.StateList.States[0];
+                }
+
+                ColorCode color = null;
+                color = ColorCode.GetColorCode(CurrentState.InitialColor);
+                LedController.UpdateLed(new Led(this.LEDIndex, color.R, color.G, color.B));
             }
         }
 
@@ -50,21 +94,28 @@ namespace Core.KeyPadElements
                 ColorCode color = null;
                 lock (button_lock)
                 {
-                    TransitionState();
-                    color = ColorCode.GetColorCode(this.CurrentColor);
+                    TransitionColorState();
+                    color = ColorCode.GetColorCode(CurrentState.CurrentColor);
                 }
 
                 LedController.UpdateLed(new Led(this.LEDIndex, color.R, color.G, color.B));
             }
         }
 
-        private void TransitionState()
+        public override int ButtonId()
+        {
+            lock (button_lock) {
+                return this.CurrentState.Id;
+            }
+        }
+
+        private void TransitionColorState()
         {
             int index = -1;
 
-            for (var i = 0; i < StateList.Length; i++)
+            for (var i = 0; i < this.CurrentState.StateList.Length; i++)
             {
-                if (StateList[i] == CurrentColor)
+                if (this.CurrentState.StateList[i] == this.CurrentState.CurrentColor)
                 {
                     index = i;
                     break;
@@ -76,13 +127,13 @@ namespace Core.KeyPadElements
                 throw new InvalidOperationException("Current color is not in list");
             }
 
-            if (index + 1 < StateList.Length)
+            if (index + 1 < this.CurrentState.StateList.Length)
             {
-                CurrentColor = StateList[index + 1];
+                this.CurrentState.CurrentColor = this.CurrentState.StateList[index + 1];
             }
             else
             {
-                CurrentColor = InitialColor;
+                this.CurrentState.CurrentColor = this.CurrentState.InitialColor;
             }
         }
     }

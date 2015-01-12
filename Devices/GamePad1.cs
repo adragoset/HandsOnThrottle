@@ -101,7 +101,7 @@ namespace Devices
             {
                 if (button.WasPressed())
                 {
-                    var key = button.ButtonId;
+                    var key = button.ButtonId();
 
                     if (key <= 8)
                     {

@@ -15,7 +15,7 @@ namespace Core
                                                    new ColorCode { Name = "Green" , R= 0, G = 255, B = 0 },
                                                    new ColorCode { Name = "Blue", R = 0, G = 0, B = 255 },
                                                    new ColorCode { Name = "Yellow", R = 255, G = 255, B = 0 },
-                                                   new ColorCode { Name = "Orange", R = 255, G = 128, B = 0 },
+                                                   new ColorCode { Name = "Orange", R = 255, G = 102, B = 0 },
                                                    new ColorCode { Name = "Purple", R = 128, G = 0, B = 255 },
                                                    new ColorCode { Name = "Pink", R = 255, G = 0, B = 128 },
                                                    new ColorCode { Name = "Magenta", R = 255, G = 0, B = 255 },

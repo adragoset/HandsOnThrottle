@@ -37,6 +37,7 @@
     <Compile Include="KeyPadElements\StatefulButton.cs" />
     <Compile Include="KeyPadElements\StatefulRGBKeypad.cs" />
     <Compile Include="KeyPadState\ButtonState.cs" />
+    <Compile Include="KeyPadState\VirtualButton.cs" />
     <Compile Include="KeyPadState\KeyPadConfigurationParser.cs" />
     <Compile Include="KeyPadState\KeyPadState.cs" />
     <Compile Include="KeyPadState\PageState.cs" />

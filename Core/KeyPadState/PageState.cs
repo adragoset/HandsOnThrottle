@@ -5,7 +5,7 @@ namespace Core.KeyPadState
 {
     public class PageState
     {
-        public ButtonState[] ButtonStates;
+        public VirtualButton[] ButtonStates;
 
         public int PageNumber { get; set; }
     }

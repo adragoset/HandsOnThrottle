@@ -67,29 +67,36 @@ namespace Devices
 
         private static byte[] GetBytesForKeyPad(int[] buttonIds)
         {
-            var result = new byte[5] { 0, 0, 0, 0, 0 };
+
+            byte byte1 = 0;
+            byte byte2 = 0;
+            byte byte3 = 0;
+            byte byte4 = 0;
+            byte byte5 = 0;
 
             foreach (var key in buttonIds)
             {
-                if (key <= 8)
+                if (key == 0) { 
+                }
+                else if (key <= 8)
                 {
-                    result[0] = ByteHelper.FlipBitInByte(result[0], key);
+                    byte1 = ByteHelper.FlipBitInByte(byte1, key);
                 }
                 else if (key <= 16)
                 {
-                    result[1] = ByteHelper.FlipBitInByte(result[1], key);
+                    byte2 = ByteHelper.FlipBitInByte(byte2, key);
                 }
                 else if (key <= 24)
                 {
-                    result[2] = ByteHelper.FlipBitInByte(result[2], key);
+                    byte3 = ByteHelper.FlipBitInByte(byte3, key);
                 }
                 else if (key <= 32)
                 {
-                   result[3] = ByteHelper.FlipBitInByte(result[3], key);
+                    byte4 = ByteHelper.FlipBitInByte(byte4, key);
                 }
-                else if (key <= 35)
+                else if (key <= 36)
                 {
-                    result[4] = ByteHelper.FlipBitInByte(result[4], key);
+                    //byte5 = ByteHelper.FlipBitInByte(byte5, key);
                 }
                 else
                 {
@@ -97,7 +104,7 @@ namespace Devices
                 }
             }
 
-            return result;
+            return new byte[5] { byte1, byte2, byte3, byte4, byte5 }; ;
         }
 
         public static byte[] GetHidReportDescriptorPayload()
@@ -129,16 +136,13 @@ namespace Devices
 
                  0x05, 0x09,                    //   USAGE_PAGE (Button)
                  0x19, 0x21,                    //   USAGE_MINIMUM (Button 33)
-                 0x29, 0x23,                    //   USAGE_MAXIMUM (Button 35)
+                 0x29, 0x28,                    //   USAGE_MAXIMUM (Button 40)
                  0x15, 0x00,                    //   LOGICAL_MINIMUM (0)
                  0x25, 0x01,                    //   LOGICAL_MAXIMUM (1)
-                 0x95, 0x03,                    //   REPORT_COUNT (3)
+                 0x95, 0x08,                    //   REPORT_COUNT (8)
                  0x75, 0x01,                    //   REPORT_SIZE (1)
                  0x81, 0x02,                    //   INPUT (Data,Var,Abs)
 
-                 0x75, 0x05,                    //   REPORT_SIZE (5)
-                 0x95, 0x01,                    //   REPORT_COUNT (1)
-                 0x81, 0x03,                    //   INPUT (cnst,Var,Abs)
 
                  0x05, 0x01,                    //   USAGE_PAGE (Generic Desktop)
                  0x09, 0x39,                    //   USAGE (Hat switch)
