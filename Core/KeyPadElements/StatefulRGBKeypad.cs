@@ -35,31 +35,18 @@ namespace Core.KeyPadElements
         {
 
             int[] allButtons = new int[8];
-            bool commandWasPressed = false;
             if (CommandButton.WasPressed())
             {
-                if (!CommandStateObserved)
-                {
-                    commandWasPressed = true;
-                    CommandStateObserved = true;
-                }
 
                 allButtons[0] = CommandButton.ButtonId();
             }
-            else {
-                CommandStateObserved = false;
-            }
+           
 
             for (int i = 0; i < Buttons.Length; i++)
             {
                 if (Buttons[i].WasPressed())
                 {
                     allButtons[i + 1] = Buttons[i].ButtonId();
-                }
-
-                if (commandWasPressed)
-                {
-                    Buttons[i].IncrementState();
                 }
             }
 

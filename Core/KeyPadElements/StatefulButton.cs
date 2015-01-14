@@ -41,7 +41,8 @@ namespace Core.KeyPadElements
             }
         }
 
-        public void Home() {
+        public void Home()
+        {
             CurrentState = StateList.States[0];
             ColorCode color = null;
             lock (button_lock)
@@ -52,7 +53,8 @@ namespace Core.KeyPadElements
             LedController.UpdateLed(new Led(this.LEDIndex, color.R, color.G, color.B));
         }
 
-        public void IncrementState() {
+        public void IncrementState()
+        {
             int index = -1;
 
             lock (button_lock)
@@ -90,7 +92,8 @@ namespace Core.KeyPadElements
         protected override void Button_Pressed(InterruptInput sender, bool value)
         {
             base.Button_Pressed(sender, value);
-            if (this.WasPressed()) {
+            if (this.WasPressed())
+            {
                 ColorCode color = null;
                 lock (button_lock)
                 {
@@ -99,12 +102,14 @@ namespace Core.KeyPadElements
                 }
 
                 LedController.UpdateLed(new Led(this.LEDIndex, color.R, color.G, color.B));
+                On_Press(new ButtonPressedArgs());
             }
         }
 
         public override int ButtonId()
         {
-            lock (button_lock) {
+            lock (button_lock)
+            {
                 return this.CurrentState.Id;
             }
         }
@@ -134,6 +139,21 @@ namespace Core.KeyPadElements
             else
             {
                 this.CurrentState.CurrentColor = this.CurrentState.InitialColor;
+            }
+        }
+
+        public delegate void ButtonPressedDelegate(object sender, ButtonPressedArgs e);
+
+        public event ButtonPressedDelegate ButtonPressed;
+
+        public class ButtonPressedArgs : EventArgs
+        {
+        }
+
+        private void On_Press(ButtonPressedArgs e){
+            if (ButtonPressed != null)
+            {
+                ButtonPressed(this, e);
             }
         }
     }

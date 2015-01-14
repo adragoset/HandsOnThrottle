@@ -18,18 +18,27 @@ namespace Core.KeyPadElements
 
             Buttons = buttons;
             CommandButton = commandButton;
+            CommandButton.ButtonPressed += CommandButton_ButtonPressed;
             CurrentPage = 1;
-          
+
+        }
+
+        private void CommandButton_ButtonPressed(object sender, StatefulButton.ButtonPressedArgs e)
+        {
+            foreach (var button in Buttons)
+            {
+                button.IncrementState();
+            }
         }
 
         public virtual void Reset()
         {
-            
+
         }
 
         public virtual void SetPage(int pageNumber)
         {
-           
+
         }
     }
 }
