@@ -84,7 +84,7 @@ namespace Core.KeyPadElements
                 }
 
                 ColorCode color = null;
-                color = ColorCode.GetColorCode(CurrentState.InitialColor);
+                color = ColorCode.GetColorCode(CurrentState.CurrentColor);
                 LedController.UpdateLed(new Led(this.LEDIndex, color.R, color.G, color.B));
             }
         }

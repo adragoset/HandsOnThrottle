@@ -25,7 +25,7 @@ namespace Core.KeyPadState
                             Id = 1,
                             CurrentColor = Color.Yellow,
                             InitialColor = Color.Yellow,
-                            StateList = new Color[] {Color.Yellow,Color.Blue,Color.Magenta,Color.Green,Color.Red}
+                            StateList = new Color[] {Color.Yellow,Color.Blue,Color.Purple,Color.Green,Color.Red}
                         }
                     }
                 },
@@ -38,7 +38,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Yellow,
                                     StateList = new Color[] {
                                         Color.Yellow,
-                                        Color.Orange
+                                        Color.SeaFoamGreen
                                     }
                                 },
                                 new VirtualButton {
@@ -52,11 +52,11 @@ namespace Core.KeyPadState
                                 },
                                  new VirtualButton {
                                     Id=16,
-                                    CurrentColor = Color.Magenta,
-                                    InitialColor = Color.Magenta,
+                                    CurrentColor = Color.Purple,
+                                    InitialColor = Color.Purple,
                                     StateList = new Color[] {
-                                        Color.Magenta,
-                                        Color.Purple
+                                        Color.Purple,
+                                        Color.LightBlue
                                     }
                                 },
                                 new VirtualButton {
@@ -65,7 +65,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Green,
                                     StateList = new Color[] {
                                         Color.Green,
-                                        Color.YellowGreen
+                                        Color.Orange
                                     }
                                 },
                                 new VirtualButton {
@@ -87,7 +87,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Yellow,
                                     StateList = new Color[] {
                                         Color.Yellow,
-                                        Color.Orange
+                                        Color.SeaFoamGreen
                                     }
                                 },
                                 new VirtualButton {
@@ -101,11 +101,11 @@ namespace Core.KeyPadState
                                 },
                                  new VirtualButton {
                                     Id=17,
-                                    CurrentColor = Color.Magenta,
-                                    InitialColor = Color.Magenta,
+                                    CurrentColor = Color.Purple,
+                                    InitialColor = Color.Purple,
                                     StateList = new Color[] {
-                                        Color.Magenta,
-                                        Color.Purple
+                                        Color.Purple,
+                                        Color.SeaFoamGreen
                                     }
                                 },
                                 new VirtualButton {
@@ -114,7 +114,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Green,
                                     StateList = new Color[] {
                                         Color.Green,
-                                        Color.YellowGreen
+                                        Color.Orange
                                     }
                                 },
                                 new VirtualButton {
@@ -136,7 +136,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Yellow,
                                     StateList = new Color[] {
                                         Color.Yellow,
-                                        Color.Orange
+                                        Color.SeaFoamGreen
                                     }
                                 },
                                 new VirtualButton {
@@ -150,11 +150,11 @@ namespace Core.KeyPadState
                                 },
                                  new VirtualButton {
                                     Id=18,
-                                    CurrentColor = Color.Magenta,
-                                    InitialColor = Color.Magenta,
+                                    CurrentColor = Color.Purple,
+                                    InitialColor = Color.Purple,
                                     StateList = new Color[] {
-                                        Color.Magenta,
-                                        Color.Purple
+                                        Color.Purple,
+                                        Color.LightBlue
                                     }
                                 },
                                 new VirtualButton {
@@ -163,7 +163,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Green,
                                     StateList = new Color[] {
                                         Color.Green,
-                                        Color.YellowGreen
+                                        Color.Orange
                                     }
                                 },
                                 new VirtualButton {
@@ -185,7 +185,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Yellow,
                                     StateList = new Color[] {
                                         Color.Yellow,
-                                        Color.Orange
+                                        Color.SeaFoamGreen
                                     }
                                 },
                                 new VirtualButton {
@@ -199,11 +199,11 @@ namespace Core.KeyPadState
                                 },
                                  new VirtualButton {
                                     Id=19,
-                                    CurrentColor = Color.Magenta,
-                                    InitialColor = Color.Magenta,
+                                    CurrentColor = Color.Purple,
+                                    InitialColor = Color.Purple,
                                     StateList = new Color[] {
-                                        Color.Magenta,
-                                        Color.Purple
+                                        Color.Purple,
+                                        Color.LightBlue
                                     }
                                 },
                                 new VirtualButton {
@@ -212,7 +212,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Green,
                                     StateList = new Color[] {
                                         Color.Green,
-                                        Color.YellowGreen
+                                        Color.Orange
                                     }
                                 },
                                 new VirtualButton {
@@ -234,7 +234,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Yellow,
                                     StateList = new Color[] {
                                         Color.Yellow,
-                                        Color.Orange
+                                        Color.SeaFoamGreen
                                     }
                                 },
                                 new VirtualButton {
@@ -248,11 +248,11 @@ namespace Core.KeyPadState
                                 },
                                  new VirtualButton {
                                     Id=20,
-                                    CurrentColor = Color.Magenta,
-                                    InitialColor = Color.Magenta,
+                                    CurrentColor = Color.Purple,
+                                    InitialColor = Color.Purple,
                                     StateList = new Color[] {
-                                        Color.Magenta,
-                                        Color.Purple
+                                        Color.Purple,
+                                        Color.LightBlue
                                     }
                                 },
                                 new VirtualButton {
@@ -261,7 +261,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Green,
                                     StateList = new Color[] {
                                         Color.Green,
-                                        Color.YellowGreen
+                                        Color.Orange
                                     }
                                 },
                                 new VirtualButton {
@@ -283,7 +283,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Yellow,
                                     StateList = new Color[] {
                                         Color.Yellow,
-                                        Color.Orange
+                                        Color.SeaFoamGreen
                                     }
                                 },
                                 new VirtualButton {
@@ -297,11 +297,11 @@ namespace Core.KeyPadState
                                 },
                                  new VirtualButton {
                                     Id=21,
-                                    CurrentColor = Color.Magenta,
-                                    InitialColor = Color.Magenta,
+                                    CurrentColor = Color.Purple,
+                                    InitialColor = Color.Purple,
                                     StateList = new Color[] {
-                                        Color.Magenta,
-                                        Color.Purple
+                                        Color.Purple,
+                                        Color.LightBlue
                                     }
                                 },
                                 new VirtualButton {
@@ -310,7 +310,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Green,
                                     StateList = new Color[] {
                                         Color.Green,
-                                        Color.YellowGreen
+                                        Color.Orange
                                     }
                                 },
                                 new VirtualButton {
@@ -332,7 +332,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Yellow,
                                     StateList = new Color[] {
                                         Color.Yellow,
-                                        Color.Orange
+                                        Color.SeaFoamGreen
                                     }
                                 },
                                 new VirtualButton {
@@ -346,11 +346,11 @@ namespace Core.KeyPadState
                                 },
                                  new VirtualButton {
                                     Id=22,
-                                    CurrentColor = Color.Magenta,
-                                    InitialColor = Color.Magenta,
+                                    CurrentColor = Color.Purple,
+                                    InitialColor = Color.Purple,
                                     StateList = new Color[] {
-                                        Color.Magenta,
-                                        Color.Purple
+                                        Color.Purple,
+                                        Color.LightBlue
                                     }
                                 },
                                 new VirtualButton {
@@ -359,7 +359,7 @@ namespace Core.KeyPadState
                                     InitialColor = Color.Green,
                                     StateList = new Color[] {
                                         Color.Green,
-                                        Color.YellowGreen
+                                        Color.Orange
                                     }
                                 },
                                 new VirtualButton {
