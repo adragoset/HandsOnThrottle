@@ -1,8 +1,8 @@
 using System;
 using Microsoft.SPOT;
 using FrameWork;
-using HardWare;
 using Core;
+using Hardware;
 
 namespace Devices
 {

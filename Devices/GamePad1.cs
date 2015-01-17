@@ -4,6 +4,8 @@ using Core;
 using FrameWork;
 using HardWare;
 using System.Collections;
+using Core.InputAxis;
+using Hardware;
 
 namespace Devices
 {
@@ -21,13 +23,13 @@ namespace Devices
 
         private MomentaryButton hat_right;
 
-        private Queue LeftThrottleReadings;
+        private AnalogAxis LeftThrottle;
 
-        private Queue RightThrottleReadings;
+        private AnalogAxis RightThrottle;
 
-        private Queue XReadings;
+        private AnalogAxis TransducerY;
 
-        private Queue YReadings;
+        private AnalogAxis TransducerX;
 
         public GamePad1(ADS1115 adc, InterruptInput[] buttonInputs)
         {
@@ -53,11 +55,10 @@ namespace Devices
                 this.buttonInputs[index - 4] = new MomentaryButton(index - 3, buttonInputs[index], "Right_Throttle_B_" + (index - 3));
             }
 
-            LeftThrottleReadings = new Queue();
-            RightThrottleReadings = new Queue();
-            XReadings = new Queue();
-            YReadings = new Queue();
-
+            this.LeftThrottle = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_3, ADS1115.Gain.v1, ADS1115.Resolution.SPS475), new AveragingFilter(10), false, false, true);
+            this.RightThrottle = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_2, ADS1115.Gain.v1, ADS1115.Resolution.SPS475), new AveragingFilter(10), false, false, true);
+            this.TransducerY = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_1, ADS1115.Gain.v4, ADS1115.Resolution.SPS475), new AveragingFilter(5), false, true, true);
+            this.TransducerX = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_4, ADS1115.Gain.v3, ADS1115.Resolution.SPS475), new AveragingFilter(5), false, true, true); 
         }
 
         public byte[] GetDeviceState()
@@ -159,117 +160,22 @@ namespace Devices
 
         private byte[] GetBytesFromLeftThrottle()
         {
-            short reading = 0;
-
-            lock (adc)
-            {
-                adc.Configure(
-              ADS1115.OperationalStatus.SingleConversion,
-              ADS1115.Mode.ContinuousConversion,
-              ADS1115.Input.Input_1, ADS1115.Gain.v1,
-              ADS1115.Resolution.SPS860,
-              ADS1115.ComparatorMode.Traditional,
-              ADS1115.ComparatorPolarity.ActiveHigh,
-              ADS1115.ComparatorLatch.None,
-              ADS1115.ComparatorQueue.Disable
-              );
-                reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_3);
-                return ByteHelper.FromShort(AvgReading(LeftThrottleReadings, reading));
-            }
-
-            
+            return ByteHelper.FromShort(this.LeftThrottle.GetValue());
         }
 
         private byte[] GetBytesFromRightThrottle()
         {
-            short reading = 0;
-
-            lock (adc)
-            {
-                adc.Configure(
-              ADS1115.OperationalStatus.SingleConversion,
-              ADS1115.Mode.ContinuousConversion,
-              ADS1115.Input.Input_1, ADS1115.Gain.v1,
-              ADS1115.Resolution.SPS860,
-              ADS1115.ComparatorMode.Traditional,
-              ADS1115.ComparatorPolarity.ActiveHigh,
-              ADS1115.ComparatorLatch.None,
-              ADS1115.ComparatorQueue.Disable
-              );
-                reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_2);
-                return ByteHelper.FromShort(AvgReading(RightThrottleReadings, reading));
-            }
-
-            
+            return ByteHelper.FromShort(this.RightThrottle.GetValue());
         }
 
         private byte[] GetBytesFromY()
         {
-            short reading = 0;
-
-            lock (adc)
-            {
-                adc.Configure(
-                ADS1115.OperationalStatus.SingleConversion,
-                ADS1115.Mode.ContinuousConversion,
-                ADS1115.Input.Input_1, ADS1115.Gain.v4,
-                ADS1115.Resolution.SPS860,
-                ADS1115.ComparatorMode.Traditional,
-                ADS1115.ComparatorPolarity.ActiveHigh,
-                ADS1115.ComparatorLatch.None,
-                ADS1115.ComparatorQueue.Disable
-                );
-                reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_1);
-                return ByteHelper.FromShort(AvgReading(YReadings, reading));
-            }
-
-           
+            return ByteHelper.FromShort(this.TransducerY.GetValue());
         }
 
         private byte[] GetBytesFromX()
         {
-            short reading = 0;
-
-            lock (adc)
-            {
-                adc.Configure(
-                ADS1115.OperationalStatus.SingleConversion,
-                ADS1115.Mode.ContinuousConversion,
-                ADS1115.Input.Input_1, ADS1115.Gain.v3,
-                ADS1115.Resolution.SPS860,
-                ADS1115.ComparatorMode.Traditional,
-                ADS1115.ComparatorPolarity.ActiveHigh,
-                ADS1115.ComparatorLatch.None,
-                ADS1115.ComparatorQueue.Disable
-                );
-                reading = adc.ReadADC(ADS1115.Resolution.SPS475, ADS1115.Input.Input_4);
-                return ByteHelper.FromShort(AvgReading(XReadings, reading));
-            }
-
-        }
-
-        private short AvgReading(Queue readings, short reading)
-        {
-            if (readings.Count >= 5)
-            {
-                readings.Dequeue();
-            }
-
-            readings.Enqueue(reading);
-            object[] prevReadins = new object[5];
-            readings.CopyTo(prevReadins, 0);
-
-            int averagedValue = 0;
-
-            foreach (var obj in prevReadins)
-            {
-                if (obj != null)
-                {
-                    averagedValue = averagedValue + (short)obj;
-                }
-            }
-
-            return (short)(averagedValue / 5);
+            return ByteHelper.FromShort(this.TransducerX.GetValue());
         }
 
         public static byte[] GetHidReportDescriptorPayload()

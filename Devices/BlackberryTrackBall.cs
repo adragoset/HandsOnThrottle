@@ -3,6 +3,7 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using FrameWork;
 using Core;
+using Hardware;
 
 
 namespace Devices

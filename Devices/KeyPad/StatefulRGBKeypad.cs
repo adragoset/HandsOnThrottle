@@ -1,26 +1,24 @@
 using System;
 using Microsoft.SPOT;
 using System.Collections;
+using Hardware;
+using Core;
 
-namespace Core.KeyPadElements
+namespace Devices
 {
     public class StatefulRGBKeypad : RGBKeypad
     {
-
-        private bool CommandStateObserved = false; 
         public StatefulRGBKeypad(StatefulButton[] buttons, StatefulButton commandButton)
             : base(buttons, commandButton)
         {
 
         }
 
-        public void IncrementPage()
-        {
-
-        }
+        
 
         public void HomePage()
         {
+            base.CommandButton.Home();
 
         }
 

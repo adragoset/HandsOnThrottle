@@ -46,9 +46,3 @@ C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\obj\Debug\le\Core.pe
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\obj\Debug\le\Core.pdbx
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\obj\Debug\Core.dll
 C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\obj\Debug\Core.pdb
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\bin\Debug\LE\HardWare.pe
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\bin\Debug\BE\HardWare.pe
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\bin\Debug\LE\HardWare.pdbx
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\bin\Debug\BE\HardWare.pdbx
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\bin\Debug\HardWare.dll
-C:\Users\Alex\Documents\GitHub\HandsOnThrottle\Core\bin\Debug\HardWare.pdb

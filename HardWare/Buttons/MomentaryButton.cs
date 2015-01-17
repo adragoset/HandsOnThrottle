@@ -3,7 +3,7 @@ using Microsoft.SPOT.Hardware;
 using FrameWork;
 
 
-namespace Core
+namespace Hardware
 {
     public class MomentaryButton : Button
     {

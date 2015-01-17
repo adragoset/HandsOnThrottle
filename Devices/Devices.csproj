@@ -32,9 +32,12 @@
   <ItemGroup>
     <Compile Include="GamePad1.cs" />
     <Compile Include="GamePad2.cs" />
-    <Compile Include="KeyPad.cs" />
+    <Compile Include="KeyPad\KeyPad.cs" />
+    <Compile Include="KeyPad\RGBKeyPad.cs" />
+    <Compile Include="KeyPad\StatefulRGBKeypad.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BlackberryTrackBall.cs" />
+    <Compile Include="StatefulButton.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Microsoft.SPOT.Hardware" />

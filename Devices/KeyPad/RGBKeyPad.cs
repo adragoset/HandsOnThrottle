@@ -1,7 +1,8 @@
 using System;
 using Microsoft.SPOT;
+using Hardware;
 
-namespace Core.KeyPadElements
+namespace Devices
 {
     public abstract class RGBKeypad
     {
@@ -33,12 +34,20 @@ namespace Core.KeyPadElements
 
         public virtual void Reset()
         {
-
+            CommandButton.Home();
+            foreach (var button in Buttons)
+            {
+                button.Home();
+            }
         }
 
         public virtual void SetPage(int pageNumber)
         {
-
+            CommandButton.SetColorState(pageNumber - 1);
+            foreach (var button in Buttons)
+            {
+                button.SetState(pageNumber);
+            }
         }
     }
 }

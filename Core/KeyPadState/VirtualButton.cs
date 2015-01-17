@@ -12,5 +12,10 @@ namespace Core.KeyPadState
         public Color InitialColor { get; set; }
 
         public Color CurrentColor { get; set; }
+
+        public void Reset()
+        {
+            CurrentColor = InitialColor;
+        }
     }
 }

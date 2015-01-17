@@ -2,7 +2,6 @@ using System;
 using Microsoft.SPOT;
 using FrameWork;
 using Core;
-using Core.KeyPadElements;
 using Core.KeyPadState;
 using System.Threading;
 using Microsoft.SPOT.Hardware;

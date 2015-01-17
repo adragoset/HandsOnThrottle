@@ -3,7 +3,7 @@ using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
 using FrameWork;
 
-namespace Core
+namespace Hardware
 {
     public abstract class Button
     {

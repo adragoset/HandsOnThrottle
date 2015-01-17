@@ -1,9 +1,10 @@
 using System;
 using Microsoft.SPOT;
 using Microsoft.SPOT.Hardware;
+using Core;
 
 
-namespace Core
+namespace Hardware
 {
     public class RGBLedOutput
     {

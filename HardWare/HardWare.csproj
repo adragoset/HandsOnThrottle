@@ -30,9 +30,13 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="ADS1115.cs" />
+    <Compile Include="ADS1115\ADS1115.cs" />
+    <Compile Include="ADS1115\ADS1115Reader.cs" />
+    <Compile Include="Buttons\Button.cs" />
+    <Compile Include="Buttons\MomentaryButton.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="HubAp5.cs" />
+    <Compile Include="RGBLed.cs" />
     <Compile Include="RGBLedSeriesController.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -42,6 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{A9073828-9F7E-4FF4-8D5E-DF63C33590F3}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FrameWork\FrameWork.csproj">
       <Project>{FA41CA92-0098-4248-B9F9-CB5F3926947F}</Project>
       <Name>FrameWork</Name>
