@@ -58,7 +58,7 @@ namespace Devices
             this.LeftThrottle = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_3, ADS1115.Gain.v1, ADS1115.Resolution.SPS475), new AveragingFilter(10), false, false, true);
             this.RightThrottle = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_2, ADS1115.Gain.v1, ADS1115.Resolution.SPS475), new AveragingFilter(10), false, false, true);
             this.TransducerY = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_1, ADS1115.Gain.v4, ADS1115.Resolution.SPS475), new AveragingFilter(5), false, true, true);
-            this.TransducerX = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_4, ADS1115.Gain.v3, ADS1115.Resolution.SPS475), new AveragingFilter(5), false, true, true); 
+            this.TransducerX = new VirtualAnalogAxis(new ADS1115Channel(this.adc, ADS1115.Input.Input_4, ADS1115.Gain.v3, ADS1115.Resolution.SPS475), new AveragingFilter(5), false, true, true);
         }
 
         public byte[] GetDeviceState()
@@ -178,6 +178,31 @@ namespace Devices
             return ByteHelper.FromShort(this.TransducerX.GetValue());
         }
 
+        public void CalibrateXYAxisMinMax()
+        {
+            TransducerX.CalibrateAxisMinMax();
+            TransducerY.CalibrateAxisMinMax();
+        }
+
+        public void StopCalibration() {
+            TransducerX.StopCalibration();
+            TransducerY.StopCalibration();
+            LeftThrottle.StopCalibration();
+            RightThrottle.StopCalibration();
+        }
+
+        public void FindXYCenter()
+        {
+            TransducerX.FindCenter();
+            TransducerY.FindCenter();
+        }
+
+        public void CalibrateThrottleAxisMaxMin()
+        {
+            LeftThrottle.CalibrateAxisMinMax();
+            RightThrottle.CalibrateAxisMinMax();
+        }
+
         public static byte[] GetHidReportDescriptorPayload()
         {
             return new byte[]
@@ -234,6 +259,26 @@ namespace Devices
                  0xc0,                          // END COLLECTION
                  0xc0                           // END COLLECTION
             };
+        }
+
+        public bool ButtonsPressed()
+        {
+            foreach (var button in buttonInputs)
+            {
+                if (button.WasPressed())
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
+        public void CycleAxis() {
+            this.RightThrottle.GetValue();
+            this.LeftThrottle.GetValue();
+            this.TransducerX.GetValue();
+            this.TransducerY.GetValue();
         }
     }
 }

@@ -12,12 +12,18 @@ namespace Core.InputAxis
         public AnalogAxis(AnalogReader reader, Filter filter)
         {
             this.Reader = reader;
-            this.Filter = filter;            
+            this.Filter = filter;
         }
 
         public virtual short GetValue()
         {
             return Filter.Filter(Reader.GetValue());
         }
+
+        public abstract void CalibrateAxisMinMax();
+
+        public abstract void FindCenter();
+
+        public abstract void StopCalibration();
     }
 }

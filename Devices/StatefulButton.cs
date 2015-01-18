@@ -177,7 +177,6 @@ namespace Devices
             base.Button_Pressed(sender, value);
             if (this.WasPressed())
             {
-                ColorCode color = null;
                 IncrementColorState();
                 On_Press(new ButtonPressedArgs());
             }

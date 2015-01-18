@@ -30,7 +30,7 @@
   </PropertyGroup>
   <Import Project="$(NetMfTargetsBaseDir)$(TargetFrameworkVersion)\CSharp.Targets" />
   <ItemGroup>
-    <Compile Include="InputAxis\FilteredAnalogAxis.cs" />
+    <Compile Include="InputAxis\VirtualAnalogAxis.cs" />
     <Compile Include="InputReaders\AnalogReader.cs" />
     <Compile Include="ByteHelper.cs" />
     <Compile Include="Color.cs" />
