@@ -46,17 +46,20 @@ namespace HotasNoGadgeteer
 
         private CalibrationSteps CalibrationStep;
 
+        public int CenterCalibrationCount { get; set; }
+
         public static void Main()
         {
             Program p = new Program();
             p.Started = false;
             p.Calibrating = false;
-            p.CalibrationStep = CalibrationSteps.CalibrateXYCenter;
+            p.CalibrationStep = CalibrationSteps.CalibrateXY;
             p.InitializeHardWare();
             p.InitializeInterrupts();
             p.InitializeUsbConnection();
             p.InitializeDevices();
             p.CalibrateAxis();
+            p.CenterCalibrationCount = 0;
 
             while (true)
             {
@@ -276,44 +279,49 @@ namespace HotasNoGadgeteer
 
         private void Calibration_Callback(object state)
         {
-            if (GamePad1.ButtonsPressed())
+            if (CenterCalibrationCount <= 50)
             {
-                if (this.CalibrationStep == CalibrationSteps.CalibrateXYCenter)
+                this.GamePad1.FindXYCenter();
+                CenterCalibrationCount++;
+                if (CenterCalibrationCount == 51)
                 {
-                    this.CalibrationStep = CalibrationSteps.CalibrateXY;
+                    GamePad1.StopCalibration();
                 }
-                else if (this.CalibrationStep == CalibrationSteps.CalibrateXY)
+            }
+            else
+            {
+
+                if (GamePad1.ButtonsPressed())
                 {
-                    this.CalibrationStep = CalibrationSteps.CalibrateThrottle;
+                    if (this.CalibrationStep == CalibrationSteps.CalibrateXY)
+                    {
+                        this.CalibrationStep = CalibrationSteps.CalibrateThrottle;
+                    }
+                    else if (this.CalibrationStep == CalibrationSteps.CalibrateThrottle)
+                    {
+                        this.CalibrationStep = CalibrationSteps.Finished;
+                    }
+
+                    GamePad1.StopCalibration();
+                }
+
+                if (this.CalibrationStep == CalibrationSteps.CalibrateXY)
+                {
+                    this.GamePad1.CalibrateXYAxisMinMax();
                 }
                 else if (this.CalibrationStep == CalibrationSteps.CalibrateThrottle)
                 {
-                    this.CalibrationStep = CalibrationSteps.Finished;
+                    this.GamePad1.CalibrateThrottleAxisMaxMin();
                 }
-
-                GamePad1.StopCalibration();
+                else if (this.CalibrationStep == CalibrationSteps.Finished)
+                {
+                    this.Calibrating = false;
+                    this.CalibrationTimer.Dispose();
+                    this.CalibrationTimer = null;
+                }
             }
 
-            if (this.CalibrationStep == CalibrationSteps.CalibrateXY)
-            {
-                this.GamePad1.CalibrateXYAxisMinMax();
-            }
-            else if (this.CalibrationStep == CalibrationSteps.CalibrateXYCenter)
-            {
-                this.GamePad1.FindXYCenter();
-            }
-            else if (this.CalibrationStep == CalibrationSteps.CalibrateThrottle)
-            {
-                this.GamePad1.CalibrateThrottleAxisMaxMin();
-            }
-            else if (this.CalibrationStep == CalibrationSteps.Finished)
-            {
-                this.Calibrating = false;
-                this.CalibrationTimer.Dispose();
-                this.CalibrationTimer = null;
-            }
-
-            GamePad1.CycleAxis();
+            GamePad1.CycleAxis();          
         }
 
         private void Start()
@@ -324,6 +332,5 @@ namespace HotasNoGadgeteer
                 this.StartFrameTimers();
             }
         }
-
     }
 }

@@ -173,16 +173,7 @@ namespace Core.InputAxis
             }
             else if (value > CalculatedCenter)
             {
-                double percentage = 0;
-
-                if (IsCenteredAxis)
-                {
-                    percentage = CalculateRangePercentage(value, CalculatedCenter, MaxValue);
-                }
-                else {
-                    percentage = 1 - CalculateRangePercentage(value, CalculatedCenter, MaxValue);
-                }
-
+                var percentage = 1 - CalculateRangePercentage(value, CalculatedCenter, MaxValue);
                 value = (short)(MaxRangeValue * percentage);
             }
             else
@@ -194,13 +185,13 @@ namespace Core.InputAxis
 
         private short CalculateCenteringValue(short value)
         {
-            var deadzonevalue = (MaxValue-MinValue) * DeadZone;
+            var deadzonevalue = (MaxValue - MinValue) * DeadZone;
 
             var maxDeadzoneValue = AtRestCenter + deadzonevalue;
 
             var minDeadzoneValue = AtRestCenter - deadzonevalue;
 
-            if (maxDeadzoneValue > value && minDeadzoneValue < value)
+            if (maxDeadzoneValue >= value && minDeadzoneValue <= value)
             {
                 value = CalculatedCenter;
             }
@@ -215,7 +206,7 @@ namespace Core.InputAxis
                 }
                 else
                 {
-                    percentage = CalculateRangePercentage(value, maxDeadzoneValue, MaxValue);
+                    percentage = 1 - CalculateRangePercentage(value, maxDeadzoneValue, MaxValue);
 
                     value = (short)(((MaxValue - CalculatedCenter) * percentage) + CalculatedCenter);
                 }
@@ -235,7 +226,8 @@ namespace Core.InputAxis
                 {
                     return 1;
                 }
-                else {
+                else
+                {
                     return 0;
                 }
             }
@@ -255,7 +247,8 @@ namespace Core.InputAxis
             this.CalibratingAtRestCenter = true;
         }
 
-        public override void StopCalibration() {
+        public override void StopCalibration()
+        {
             this.CalibratingMaxMin = false;
 
             this.CalibratingAtRestCenter = false;
