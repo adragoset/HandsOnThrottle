@@ -199,6 +199,10 @@ namespace Devices
                     0xc0     
             };
         }
+
+        public void SetLed(Color color) {
+            Led.SetColor(color);
+        }
     }
 
     public class DeltaCoord

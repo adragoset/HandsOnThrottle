@@ -280,5 +280,10 @@ namespace Devices
             this.TransducerX.GetValue();
             this.TransducerY.GetValue();
         }
+
+        public MomentaryButton CalibrationButton()
+        {
+            return buttonInputs[0];
+        }
     }
 }

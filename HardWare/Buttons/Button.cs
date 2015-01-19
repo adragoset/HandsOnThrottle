@@ -17,6 +17,22 @@ namespace Hardware
 
         private InterruptInput input;
 
+        public delegate void ButtonPressedDelegate(object sender, ButtonPressedArgs e);
+
+        public event ButtonPressedDelegate ButtonPressed;
+
+        public class ButtonPressedArgs : EventArgs
+        {
+        }
+
+        protected void On_Press(ButtonPressedArgs e)
+        {
+            if (ButtonPressed != null)
+            {
+                ButtonPressed(this, e);
+            }
+        }
+
 
         public Button(int id, InterruptInput ioPin, string name)
         {

@@ -7,6 +7,7 @@ using Devices;
 using HardWare;
 using FrameWork;
 using System.Threading;
+using Core;
 
 namespace HotasNoGadgeteer
 {
@@ -58,8 +59,8 @@ namespace HotasNoGadgeteer
             p.InitializeInterrupts();
             p.InitializeUsbConnection();
             p.InitializeDevices();
-            p.CalibrateAxis();
             p.CenterCalibrationCount = 0;
+            p.CalibrateAxis();
 
             while (true)
             {
@@ -274,7 +275,24 @@ namespace HotasNoGadgeteer
         {
             this.Calibrating = true;
 
+            TrackBall.SetLed(Color.Red);
+
+            GamePad1.CalibrationButton().ButtonPressed += Calibration_Button_Pressed;
             this.CalibrationTimer = new ExtendedTimer(Calibration_Callback, null, 0, 10);
+        }
+
+        private void Calibration_Button_Pressed(object sender, Hardware.Button.ButtonPressedArgs e)
+        {
+            if (this.CalibrationStep == CalibrationSteps.CalibrateXY) {
+                this.CalibrationStep = CalibrationSteps.CalibrateThrottle;
+                this.TrackBall.SetLed(Color.Blue);
+                this.GamePad1.StopCalibration();
+            }
+            else if (this.CalibrationStep == CalibrationSteps.CalibrateThrottle) {
+                this.CalibrationStep = CalibrationSteps.Finished;
+                this.TrackBall.SetLed(Color.Purple);
+                this.GamePad1.StopCalibration();
+            }
         }
 
         private void Calibration_Callback(object state)
@@ -291,20 +309,6 @@ namespace HotasNoGadgeteer
             else
             {
 
-                if (GamePad1.ButtonsPressed())
-                {
-                    if (this.CalibrationStep == CalibrationSteps.CalibrateXY)
-                    {
-                        this.CalibrationStep = CalibrationSteps.CalibrateThrottle;
-                    }
-                    else if (this.CalibrationStep == CalibrationSteps.CalibrateThrottle)
-                    {
-                        this.CalibrationStep = CalibrationSteps.Finished;
-                    }
-
-                    GamePad1.StopCalibration();
-                }
-
                 if (this.CalibrationStep == CalibrationSteps.CalibrateXY)
                 {
                     this.GamePad1.CalibrateXYAxisMinMax();
@@ -318,6 +322,7 @@ namespace HotasNoGadgeteer
                     this.Calibrating = false;
                     this.CalibrationTimer.Dispose();
                     this.CalibrationTimer = null;
+                    GamePad1.CalibrationButton().ButtonPressed -= Calibration_Button_Pressed;
                 }
             }
 

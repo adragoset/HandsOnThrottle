@@ -15,6 +15,10 @@ namespace Hardware
         protected override void Button_Pressed(InterruptInput sender, bool value)
         {
             base.Button_Pressed(sender, value);
+            if (this.wasPressed)
+            {
+                On_Press(new ButtonPressedArgs());
+            }
         }
     }
 }

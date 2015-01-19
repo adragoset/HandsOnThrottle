@@ -182,20 +182,5 @@ namespace Devices
             }
         }
 
-        public delegate void ButtonPressedDelegate(object sender, ButtonPressedArgs e);
-
-        public event ButtonPressedDelegate ButtonPressed;
-
-        public class ButtonPressedArgs : EventArgs
-        {
-        }
-
-        private void On_Press(ButtonPressedArgs e)
-        {
-            if (ButtonPressed != null)
-            {
-                ButtonPressed(this, e);
-            }
-        }
     }
 }
