@@ -12,10 +12,7 @@ namespace G120
             GHI.Pins.G120.P0_5,
             GHI.Pins.G120.P1_14,
             GHI.Pins.G120.P1_16,
-            GHI.Pins.G120.P1_17,
-            GHI.Pins.G120.P0_9,
-            GHI.Pins.G120.P0_8,
-            GHI.Pins.G120.P0_7,
+            GHI.Pins.G120.P1_17
         };
 
         public static Cpu.Pin[] I2cSocket = new Cpu.Pin[] { 
